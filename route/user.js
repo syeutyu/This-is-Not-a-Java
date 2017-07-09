@@ -1,9 +1,22 @@
 const date = require('date-utils');
+const Model = require('../Mongo/Schema');
 
 exports.checkFire = (req,res) =>{
-  let Rnum = req.body.name;
-  let database = req.app.get('database');
+  let spot = req.body.spot;
+  let Check = req.body.Check;
+  
   let newDate = new Date();
   let time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
-  console.log(Rnum);
+
+  let users = new Model({
+    "spot" : spot,
+    "time" : time,
+    "check" : Check
+  });
+  users.save((err)=>{
+    if(err){
+      console.log(err);
+    }
+  });
+  console.log(users)
 };
