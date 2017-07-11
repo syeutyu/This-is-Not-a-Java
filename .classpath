@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/junit.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-core.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-core-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-core-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-device.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-device-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-device-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-example.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-example-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-example-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-gpio-extension.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-gpio-extension-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-gpio-extension-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-service.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-service-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/나호겸 10301/Desktop/pi4j-1.1/pi4j-1.1/lib/pi4j-service-sources.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/pi/Desktop/org/json/json/20160810/json-20160810.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/junit.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-core.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-core-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-core-sources.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-device.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-device-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-device-sources.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-example.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-example-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-example-sources.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-gpio-extension.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-gpio-extension-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-gpio-extension-sources.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-service.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-service-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/pi/Desktop/This-is-Not-a-Java/pi4j-1.1/lib/pi4j-service-sources.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
