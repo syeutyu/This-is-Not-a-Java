@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 module.exports = () => {
   function connect() {
     mongoose.connect('localhost:27017', function(err) {

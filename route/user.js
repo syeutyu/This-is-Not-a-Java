@@ -3,20 +3,47 @@ const Model = require('../Mongo/Schema');
 
 exports.checkFire = (req,res) =>{
   let spot = req.body.spot;
-  let Check = req.body.Check;
-  
-  let newDate = new Date();
-  let time = newDate.toFormat('YYYY-MM-DD HH24:MI:SS');
+  let arr  = spot.split(",");
+  console.log(arr)
+  let time = getTimeStamp();
+  console.log(time)
 
   let users = new Model({
-    "spot" : spot,
+    "spot" : arr[0],
     "time" : time,
-    "check" : Check
+    "check":arr[1]
   });
+
   users.save((err)=>{
     if(err){
       console.log(err);
     }
   });
-  console.log(users)
+
 };
+
+function getTimeStamp() {
+  var d = new Date();
+  var s =
+    leadingZeros(d.getFullYear(), 4) + '-' +
+    leadingZeros(d.getMonth() + 1, 2) + '-' +
+    leadingZeros(d.getDate(), 2) + ' ' +
+
+    leadingZeros(d.getHours(), 2) + ':' +
+    leadingZeros(d.getMinutes(), 2) + ':' +
+    leadingZeros(d.getSeconds(), 2);
+
+  return s;
+}
+
+function leadingZeros(n, digits) {
+  var zero = '';
+  n = n.toString();
+
+  if (n.length < digits) {
+    for (i = 0; i < digits - n.length; i++)
+      zero += '0';
+  }
+  return zero + n;
+}
+
