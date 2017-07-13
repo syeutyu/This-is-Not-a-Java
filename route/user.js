@@ -1,49 +1,55 @@
 const date = require('date-utils');
-const Model = require('../Mongo/Schema');
+const LasModel = require('../Mongo/Schema');
+const AndroidModel = require('../Mongo/AndroidSchema');
+const time = require('./time');
 
-exports.checkFire = (req,res) =>{
+exports.checkFire = (req, res) => {
   let spot = req.body.spot;
-  let arr  = spot.split(",");
+  let arr = spot.split(",");
   console.log(arr)
-  let time = getTimeStamp();
+  let times = time.getTimeStamp();
   console.log(time)
 
-  let users = new Model({
-    "spot" : arr[0],
-    "time" : time,
-    "check":arr[1]
+  let users = new LasModel({
+
+    "spot": arr[0],
+    "time": times,
+    "check": arr[1]
+  
   });
 
-  users.save((err)=>{
-    if(err){
+  users.save((err) => {
+    if (err) {
       console.log(err);
     }
   });
 
 };
 
-function getTimeStamp() {
-  var d = new Date();
-  var s =
-    leadingZeros(d.getFullYear(), 4) + '-' +
-    leadingZeros(d.getMonth() + 1, 2) + '-' +
-    leadingZeros(d.getDate(), 2) + ' ' +
+exports.signin = (req, res) => {
+  console.log('로그인 실행');
+  let id = req.body.id;
+  let pw = req.body.password;
 
-    leadingZeros(d.getHours(), 2) + ':' +
-    leadingZeros(d.getMinutes(), 2) + ':' +
-    leadingZeros(d.getSeconds(), 2);
-
-  return s;
+  console.log(id + ',' + pw);
+  res.writeHead(200);
 }
 
-function leadingZeros(n, digits) {
-  var zero = '';
-  n = n.toString();
+exports.signup = (req, res) => {
 
-  if (n.length < digits) {
-    for (i = 0; i < digits - n.length; i++)
-      zero += '0';
-  }
-  return zero + n;
+  console.log('회원가입 실행')
+  
+  let id = req.body.id;
+  let pw = req.body.password;
+  let code = req.body.code;
+
+  let user = new AndroidModel({
+    "userId": id,
+    "passWord": pw,
+    "moduleCode": code
+  });
+
+  user.save((err)=>{
+    console.log('err : '+err);
+  });
 }
-

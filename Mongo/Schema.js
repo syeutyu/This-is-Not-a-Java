@@ -11,4 +11,4 @@ let schema = new mongoose.Schema({
     check: Boolean
 });
 
-module.exports = mongoose.model('JavaProject1', schema);;
+module.exports = mongoose.model('JavaProject_Lasbery', schema);;
