@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dsm.firealarm.SignUpActivity">
+
+    <EditText
+        android:id="@+id/inputId"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="151dp"
+        android:hint="Id"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputPw"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/inputId"
+        android:layout_centerHorizontal="true"
+        android:hint="Pw"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/pwConfirm"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/inputPw"
+        android:layout_centerHorizontal="true"
+        android:hint="Pw확인"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/inputCode"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Code"
+        android:inputType="text"
+        android:layout_below="@+id/pwConfirm"
+        android:layout_alignStart="@+id/pwConfirm" />
+
+    <EditText
+        android:id="@+id/inputName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/inputCode"
+        android:layout_centerHorizontal="true"
+        android:hint="이름"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/inputRno"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/inputName"
+        android:layout_centerHorizontal="true"
+        android:hint="호실"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/inputRno"
+        android:layout_marginTop="20dp"
+        android:layout_toStartOf="@+id/btnCancel"
+        android:text="Sign up"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_alignEnd="@+id/inputPw"
+        android:layout_alignTop="@+id/btnSignup"
+        android:text="Cancel"
+        android:textAllCaps="false" />
+</RelativeLayout>

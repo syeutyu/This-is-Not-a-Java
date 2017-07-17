@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dsm.firealarm.SignInActivity">
+
+    <EditText
+        android:id="@+id/idInput"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/pwInput"
+        android:layout_marginTop="154dp"
+        android:hint="Id"
+        android:inputType="text"
+        android:textAllCaps="false" />
+
+    <EditText
+        android:id="@+id/pwInput"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/idInput"
+        android:layout_centerHorizontal="true"
+        android:hint="Pw"
+        android:inputType="textPassword"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_alignStart="@+id/pwInput"
+        android:layout_below="@+id/pwInput"
+        android:layout_marginTop="20dp"
+        android:text="회원가입" />
+
+    <Button
+        android:id="@+id/btnSignin"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_alignBaseline="@+id/btnSignup"
+        android:layout_alignBottom="@+id/btnSignup"
+        android:layout_toEndOf="@+id/findId"
+        android:text="로그인" /> <!--android:textAllCaps="false"로 하면 text 소문자 사용이 가능하다.-->
+
+    <TextView
+        android:id="@+id/findId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSignup"
+        android:layout_toStartOf="@+id/slash"
+        android:text="아이디 찾기" />
+
+    <TextView
+        android:id="@+id/slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSignup"
+        android:layout_centerHorizontal="true"
+        android:text="/" />
+
+    <TextView
+        android:id="@+id/findPw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSignup"
+        android:layout_toEndOf="@+id/slash"
+        android:text="비밀번호 찾기" />
+
+</RelativeLayout>

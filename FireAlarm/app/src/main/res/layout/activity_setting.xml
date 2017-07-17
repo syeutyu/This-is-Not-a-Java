@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dsm.firealarm.SettingActivity">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="151dp"
+        android:hint="이름" />
+
+    <EditText
+        android:id="@+id/etRno"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/etName"
+        android:layout_centerHorizontal="true"
+        android:hint="호실" />
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvModified"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="60dp"-->
+    <!--android:text="수정"-->
+    <!--android:layout_below="@+id/etRno" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvCompletion"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="완료" />-->
+
+</RelativeLayout>
