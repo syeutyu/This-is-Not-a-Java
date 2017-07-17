@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static dsm.firealarm.R.layout.fragment_find_dialog;
 
@@ -51,13 +50,17 @@ public class FindDialog extends DialogFragment {
             okBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+/*
 
                     if(inputCode.getText().toString().length()==0) {
                         Toast.makeText(FindDialog.this,"코드를 입력해주세요!",Toast.LENGTH_SHORT).show();
                         inputCode.requestFocus();
-                    } else if(/**서버로 코드 전송 뒤 일치 된 코드가 없을 경우 */) {
+                    } else if(*/
+/**서버로 코드 전송 뒤 일치 된 코드가 없을 경우 *//*
+) {
 
                     }
+*/
 
                     dismiss();
                     android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -78,9 +81,9 @@ public class FindDialog extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     if(inputCode.getText().toString().length()==0) {
-                        Toast.makeText(FindDialog.this,"아이디를 입력해주세요!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(FindDialog.this,"아이디를 입력해주세요!",Toast.LENGTH_SHORT).show();
                         inputCode.requestFocus();
-                    } else if(/**서버로 아이디 전송 뒤 비밀번호 리턴받아야 함 */) {
+//                    } else if(/**서버로 아이디 전송 뒤 비밀번호 리턴받아야 함 */) {
 
                     }
 

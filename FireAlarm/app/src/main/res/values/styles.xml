@@ -19,7 +19,11 @@
 
     <style name="Dialog" parent="android:Theme.Dialog">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="Splash" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 </resources>
