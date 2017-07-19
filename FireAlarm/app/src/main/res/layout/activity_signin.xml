@@ -27,13 +27,12 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/btnSignup"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_alignStart="@+id/pwInput"
-        android:layout_below="@+id/pwInput"
-        android:layout_marginTop="20dp"
-        android:text="회원가입" />
+            android:id="@+id/btnSignup"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:text="회원가입" android:layout_below="@+id/pwInput"
+            android:layout_alignStart="@+id/pwInput"/>
 
     <Button
         android:id="@+id/btnSignin"
