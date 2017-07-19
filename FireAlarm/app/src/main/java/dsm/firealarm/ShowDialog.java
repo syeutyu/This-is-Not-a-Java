@@ -1,6 +1,7 @@
 package dsm.firealarm;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -38,9 +39,39 @@ public class ShowDialog extends DialogFragment {
 
         if (i == 1) {
             showInfo.setText("사용자의 아이디는");
-        } else {
+            okBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    dismiss();
+                }
+            });
+            cancelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), FindDialog.class);
+                    startActivity(intent);
+                }
+            });
+        } /*else {
             showInfo.setText("사용자의 비밀번호는");
-        }
+            okBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    dismiss();
+                }
+            });
+            cancelBtn.setOnClickListener(new View.OnClickListener() {
+*//*
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), FindDialog.class);
+                    startActivity(intent);
+                }
+오류 발생생
+*//*
+           });
+        }*/
 
         // 레이아웃 XML과 뷰 변수 연결
 
