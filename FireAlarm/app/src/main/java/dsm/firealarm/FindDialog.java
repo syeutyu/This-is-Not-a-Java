@@ -1,15 +1,24 @@
 package dsm.firealarm;
 
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static dsm.firealarm.R.layout.fragment_find_dialog;
 
@@ -23,6 +32,7 @@ public class FindDialog extends DialogFragment {
     private int i;
     private final int FIND_ID_DIALOG = 1;
     private final int FIND_PW_DIALOG = 2;
+    private AQuery aQuery;
 
     // 각종 뷰 변수 선언
 
@@ -43,6 +53,7 @@ public class FindDialog extends DialogFragment {
         final EditText inputCode = (EditText) view.findViewById(R.id.inputCode);
         Button okBtn = (Button) view.findViewById(R.id.okBtn);
         Button cancelBtn = (Button) view.findViewById(R.id.cancelBtn);
+        aQuery = new AQuery(getActivity());
 
         if (i == 1) {
             inputTv.setText("사용자의 고유 코드를 입력해주세요.");
@@ -50,22 +61,39 @@ public class FindDialog extends DialogFragment {
             okBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-/*
-
-                    if(inputCode.getText().toString().length()==0) {
-                        Toast.makeText(FindDialog.this,"코드를 입력해주세요!",Toast.LENGTH_SHORT).show();
+                    if (inputCode.getText().toString().length() == 0) {
+                        Toast.makeText(getActivity(), "코드를 입력해주세요!", Toast.LENGTH_LONG).show();
                         inputCode.requestFocus();
-                    } else if(*/
-/**서버로 코드 전송 뒤 일치 된 코드가 없을 경우 *//*
-) {
-
                     }
-*/
+                    String code = inputCode.getText().toString();
 
-                    dismiss();
-                    android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
-                    ShowDialog showDialog = new ShowDialog(FIND_ID_DIALOG);
-                    showDialog.show(fm, "dialog");
+                    Map<String, String> params = new HashMap<>();
+
+                    params.put("code", code);
+
+                    aQuery.ajax("http://10.156.145.113:3000/auth/findid", params, String.class, new AjaxCallback<String>() {
+                        @Override
+                        public void callback(String url, String response, AjaxStatus status) {
+
+                            int statusCode = status.getCode();
+                            Log.d("statusCode", Integer.toString(statusCode));
+
+                            if (statusCode == 200) {
+                                /** 코드에 따른 아이디 받아와야 함 받아온 아이디는 ShowDialog에서 출력 */
+                                dismiss();
+                                android.support.v4.app.FragmentManager fm = getActivity().getSupportFragmentManager();
+                                ShowDialog showDialog = new ShowDialog(FIND_ID_DIALOG);
+                                showDialog.show(fm, "dialog");
+                            } else if (statusCode == 400) {
+                                // 400 : 아이디가 없거나 기타 오류 Ex) 자체적인 서버 오류 등
+//                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "일시적으로 오류가 발생하였습니다. 다시 시도해 주십시오.", 3000).show();
+                            }
+                        }
+                    });
+
+                    /**서버로 코드 전송 뒤 일치 된 코드가 없을 경우 *//*else if () {
+
+                    }*/
                 }
             });
             cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +108,8 @@ public class FindDialog extends DialogFragment {
             okBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(inputCode.getText().toString().length()==0) {
-//                        Toast.makeText(FindDialog.this,"아이디를 입력해주세요!",Toast.LENGTH_SHORT).show();
+                    if (inputCode.getText().toString().length() == 0) {
+                        Toast.makeText(getActivity(), "아이디를 입력해주세요!", Toast.LENGTH_LONG).show();
                         inputCode.requestFocus();
 //                    } else if(/**서버로 아이디 전송 뒤 비밀번호 리턴받아야 함 */) {
 
