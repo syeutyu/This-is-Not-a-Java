@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -54,6 +55,8 @@ public class FindDialog extends DialogFragment {
         Button okBtn = (Button) view.findViewById(R.id.okBtn);
         Button cancelBtn = (Button) view.findViewById(R.id.cancelBtn);
         aQuery = new AQuery(getActivity());
+
+        FindDialog.this.getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         if (i == 1) {
             inputTv.setText("사용자의 고유 코드를 입력해주세요.");
@@ -134,4 +137,5 @@ public class FindDialog extends DialogFragment {
 
         return view;
     }
+
 }

@@ -8,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ public class ShowDialog extends DialogFragment {
 
         okBtn = (Button) view.findViewById(R.id.okBtn);
         cancelBtn = (Button) view.findViewById(R.id.cancelBtn);
+
+        ShowDialog.this.getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         if (i == 1) {
             showInfo.setText("사용자의 아이디는");
