@@ -16,6 +16,11 @@ app.use(bodyparser.json());
 
 app.use('/',route);
 
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(400).send('Something broke!');
+});
+
 app.listen(3000,function(){
     console.log('Port On');
 });
