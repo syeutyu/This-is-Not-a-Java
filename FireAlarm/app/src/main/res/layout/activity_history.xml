@@ -11,14 +11,14 @@
 
         <Button
             android:id="@+id/btn_first"
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
+            android:layout_width="240dp"
+            android:layout_height="80dp"
             android:text="전체보기" />
 
         <Button
             android:id="@+id/btn_second"
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
+            android:layout_width="240dp"
+            android:layout_height="80dp"
             android:text="자세히 보기" />
     </LinearLayout>
 

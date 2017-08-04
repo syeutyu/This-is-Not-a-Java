@@ -69,7 +69,7 @@ public class SignInActivity extends AppCompatActivity {
                                 finish();
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivityForResult(intent, 1000);
-                                // SnackbarManager.createCancelableSnackbar(v, "로그인 성공", 3000).show();
+                                //SnackbarManager.createCancelableSnackbar(MainActivity.class, "로그인 성공", 3000).show();
                             } else {
                                 SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
                             }
