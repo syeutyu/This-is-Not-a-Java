@@ -3,10 +3,11 @@ var database = require('./Mongo/database');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var config = require('./config');
-let route = require('./route/router');
+var session = require('express-session');
+var androidRoute = require('./route/androidRouter/router');
+//var lasberyRoute = require('./route/lasberyRouter/route');
 var app = express();
 
-database();
     
 app.use(bodyparser.urlencoded({
     extended: false
@@ -14,14 +15,17 @@ app.use(bodyparser.urlencoded({
 
 app.use(bodyparser.json());
 
-app.use('/',route);
+app.use('/', androidRoute);
+app.use('/', lasberyRoute);
 
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.status(400).send('Something broke!');
-});
+app.use(session({
+    key : 'Java',
+    secret : 'secret',
+    resave : false
+}))
 
 app.listen(3000,function(){
+    database.init(app,config);
     console.log('Port On');
 });
   
