@@ -4,7 +4,7 @@ exports.signin = (req, res) => {
   let pw = req.body.password;
   let database = req.app.get('database');
 
-  console.log(id + ',' + pw);
+  console.log(id + ' , ' + pw);
   database.android.findById(id, (err, find) => {
 
     if (Object.keys(find).length != 0) {
@@ -12,9 +12,12 @@ exports.signin = (req, res) => {
       database.android.findByPw(pw, (err, findpw) => {
 
         if (Object.keys(findpw).length != 0) {
+
           req.session.key = findpw[0]._doc.salt;
+          console.log(req.session.key);
           res.writeHead(200);
           res.end();
+
 
         } else {
 
@@ -38,6 +41,10 @@ exports.signin = (req, res) => {
   });
 }
 
+function makeSalt() {
+  return Math.round((new Date().valueOf() * Math.random())) + ''
+}
+
 exports.signup = (req, res) => {
 
   console.log('회원가입 실행')
@@ -57,26 +64,33 @@ exports.signup = (req, res) => {
       });
       res.end();
     }
-    if (find == null) {
+
+    if (find == false) {
+
+      var salt = makeSalt()
+
       let user = new database.android({
         "userId": id,
         "passWord": pw,
+        "salt": salt,
         "moduleCode": code,
         "name": name,
         "R_num": rno
+
       });
 
       user.save(function (err) {
 
         if (err) {
           console.log(err.stack);
-          res.send(400, {
+
+          res.status(400).send({
             err: 'Android DB save Failed'
           });
           res.end();
 
         } else
-          console.log('Android Save complete')
+          console.log('Android Save complete');
         res.status(200);
         res.end();
 
@@ -90,6 +104,8 @@ exports.signup = (req, res) => {
   })
 
 }
+
+
 
 exports.search = (req, res) => {
 
@@ -116,12 +132,22 @@ exports.search = (req, res) => {
       })
 
     } else {
+      database.lasbery.findAll((err, find) => {
 
-      console.log('데이터 못 찾음');
-      res.status(400).send({
-        err: 'Not Found R_num Data'
-      });
-      res.end();
+        if (err) {
+          console.log(err);
+          res.status(400).send({
+            err: err
+          });
+          res.end();
+        }
+
+        if (find) {
+          res.status(200).send(JSON.stringify(find));
+          res.end();
+        }
+      })
+
     }
   } else {
     res.status(400).send({
@@ -131,32 +157,36 @@ exports.search = (req, res) => {
   }
 }
 
+
 exports.test = (req, res) => {
 
-  if (req.sesion.key) {
+  if (req.session.key) {
     let database = req.app.get('database');
     let key = req.session.key;
-    database.android.findBySalt(key,(err,find)=>{
-      if (err) {
-        console.log(err);
-        res.status(400).send({
-          err: err
-        });
-        res.end();
+    database.lasbery.update({}, {
+      "$set": {
+        "check" : key
       }
-      if(find){
-        let found = find[0]._doc.R_num;
-        let user = new database.test({
-          'R_num' : found,
-          'check' : true
-        });
+    }, () => {
+      database.lasbery.findByBool(true, key, (err, find) => {
 
-        user.save();
-
-        res.status(200);
-        res.end();
-      }
+        if (err) {
+          console.log(err);
+          res.status(400).send({
+            err: err
+          });
+          
+          res.end();
+        }
+        if (find) {
+          console.log('테스트 데이터중 해당하는 salt값을 가진 정보');
+          res.status(200).send(JSON.stringify(find));
+          res.end();
+        }
+      })
     })
+
+
 
   } else {
     res.status(400).send({
