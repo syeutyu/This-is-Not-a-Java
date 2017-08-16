@@ -114,7 +114,7 @@ exports.search = (req, res) => {
 
         if (roomNum) {
 
-            databae.lasbery.findR_num(roomNum, (err, find) => {
+            database.lasbery.findR_num(roomNum, (err, find) => {
 
                 if (err) {
                     console.log(err);
