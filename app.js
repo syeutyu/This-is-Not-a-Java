@@ -8,7 +8,7 @@ var androidRoute = require('./route/androidRouter/router');
 var lasberyRoute = require('./route/lasberyRouter/router');
 var app = express();
 
-    
+
 app.use(bodyparser.urlencoded({
     extended: false
 }));
@@ -16,8 +16,9 @@ app.use(bodyparser.urlencoded({
 app.use(session({
     key: 'Java',
     secret: 'secret',
-    resave: false
-}))
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use(bodyparser.json());
 
@@ -25,8 +26,7 @@ app.use('/', androidRoute);
 app.use('/', lasberyRoute);
 
 
-app.listen(3000,function(){
-    database.init(app,config);
+app.listen(3000, function() {
+    database.init(app, config);
     console.log('Port On');
 });
-  
