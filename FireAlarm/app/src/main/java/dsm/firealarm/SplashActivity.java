@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 
-
-
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         /** 로그 */
-        Log.e("bsos1202","SplashActivity income!!");
+        Log.i(this.getClass().getName(), "SplashActivity income!");
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
