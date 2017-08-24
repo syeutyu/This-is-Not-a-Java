@@ -23,7 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private AQuery aQuery;
     private Button btnCancel, btnSignUp;
-    private EditText inputId, inputPw, pwConfirm, inputCode, inputName, inputRno;
+    private EditText inputId, inputPw, pwConfirm, inputCode, inputName, inputPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         pwConfirm = (EditText) findViewById(R.id.pwConfirm);
         inputCode = (EditText) findViewById(R.id.inputCode);
         inputName = (EditText) findViewById(R.id.inputName);
-        inputRno = (EditText) findViewById(R.id.inputRno);
+        inputPlace = (EditText) findViewById(R.id.inputPlace);
         btnCancel = (Button) findViewById(R.id.btnCancel);
         btnSignUp = (Button) findViewById(R.id.btnSignup);
 
@@ -109,9 +109,9 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "이름을 입력하세요!", Toast.LENGTH_SHORT).show();
                     inputPw.requestFocus();
                     return;
-                } else if (inputRno.getText().toString().length() == 0) {
-                    Toast.makeText(SignUpActivity.this, "호실 번호를 입력하세요!", Toast.LENGTH_SHORT).show();
-                    inputRno.requestFocus();
+                } else if (inputPlace.getText().toString().length() == 0) {
+                    Toast.makeText(SignUpActivity.this, "위치 설정을 입력하세요!", Toast.LENGTH_SHORT).show();
+                    inputPlace.requestFocus();
                     return;
                 }
 
@@ -121,7 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = inputPw.getText().toString();
                 String code = inputCode.getText().toString();
                 String name = inputName.getText().toString();
-                String rno = inputRno.getText().toString();
+                String place = inputPlace.getText().toString();
 
                 Map<String, String> params = new HashMap<>();
 
@@ -129,7 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
                 params.put("password", password);
                 params.put("code", code);
                 params.put("name", name);
-                params.put("rno", rno);
+                params.put("place", place);
                 Log.d("send data", params.toString());
 
 
@@ -162,7 +162,8 @@ public class SignUpActivity extends AppCompatActivity {
 //                    setResult(RESULT_OK, result);
 //                    finish();
 
+                }
             }
-        });
+        );
     }
 }

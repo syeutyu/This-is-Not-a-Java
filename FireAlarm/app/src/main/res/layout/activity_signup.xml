@@ -51,19 +51,19 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/inputRno"
+        android:id="@+id/inputPlace"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@+id/inputName"
         android:layout_centerHorizontal="true"
-        android:hint="호실"
+        android:hint="위치 설정"
         android:inputType="number" />
 
     <Button
         android:id="@+id/btnSignup"
         android:layout_width="150dp"
         android:layout_height="55dp"
-        android:layout_below="@id/inputRno"
+        android:layout_below="@id/inputPlace"
         android:layout_marginTop="20dp"
         android:layout_toStartOf="@+id/btnCancel"
         android:text="Sign up"
