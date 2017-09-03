@@ -1,43 +1,58 @@
+const logic = require('./logic');
+
 exports.signin = (req, res) => {
     let id = req.body.id;
     let pw = req.body.password;
     let database = req.app.get('database');
 
     console.log(id + ' , ' + pw);
-    database.android.findById(id, (err, find) => {
-
-        if (Object.keys(find).length != 0) {
-
-            database.android.findByPw(pw, (err, findpw) => {
-
-                if (Object.keys(findpw).length != 0) {
-
-                    req.session.key = findpw[0]._doc.salt;
-                    console.log(req.session.key);
-                    res.writeHead(200);
-                    res.end();
-
-
-                } else {
-
-                    res.status(401).send({
-                        message: 'Not find Pw'
-                    });
-
-                    res.end();
-                }
-            });
-
-
-        } else {
-            res.status(401).send({
-                message: 'Not find Id'
-            });
-
+    logic.signId(id, database).then(logic.signPw(pw, database)).then((login) => {
+        if (login) {
+            console.log(login);
+            res.status(200);
             res.end();
-
         }
+    }).catch((err) => {
+        res.status(401).send({
+            message: err
+        });
+        res.end();
     });
+
+    //logic.signInLogic(id, database).then(pw, (id) => {}).then((find) => {}).catch(() => {});
+    // database.android.findById(id, (err, find) => {
+
+    //     if (Object.keys(find).length != 0) {
+
+    //         database.android.findByPw(pw, (err, findpw) => {
+    //             if (Object.keys(findpw).length != 0) {
+
+    //                 req.session.key = findpw[0]._doc.salt;
+    //                 console.log(req.session.key);
+    //                 res.writeHead(200);
+    //                 res.end();
+
+
+    //             } else {
+
+    //                 res.status(401).send({
+    //                     message: 'Not find Pw'
+    //                 });
+
+    //                 res.end();
+    //             }
+    //         });
+
+
+    //     } else {
+    //         res.status(401).send({
+    //             message: 'Not find Id'
+    //         });
+
+    //         res.end();
+
+    //     }
+    // });
 }
 
 function makeSalt() {
@@ -125,7 +140,10 @@ exports.search = (req, res) => {
                 }
 
                 if (find) {
-                    res.status(200).send(JSON.stringify(find));
+                    console.log(find[0].spot);
+                    res.status(200).send({
+                        data: find
+                    });
                     res.end();
                 }
             })
@@ -142,7 +160,9 @@ exports.search = (req, res) => {
                 }
 
                 if (find) {
-                    res.status(200).send(JSON.stringify(find));
+                    res.status(200).send({
+                        data: find
+                    });
                     res.end();
                 }
             })
@@ -151,7 +171,7 @@ exports.search = (req, res) => {
     } else {
         res.status(400).send({
             err: 'Not Found Session Key'
-        })
+        });
         res.end();
     }
 }

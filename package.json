@@ -19,6 +19,7 @@
     "express": "^4.14.0",
     "express-error-handler": "^1.1.0",
     "express-session": "^1.14.2",
+    "fcm-node": "^1.2.0",
     "forever": "^0.15.3",
     "formidable": "^1.1.1",
     "mongoose": "^4.6.6",
