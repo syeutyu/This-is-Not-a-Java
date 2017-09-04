@@ -11,8 +11,8 @@ exports.checkFire = (req, res) => {
     let times = time.getTimeStamp();
 
     let users = new database.lasbery({
-        "spot": spot,
-        "check": check,
+        "spot": check[0],
+        "check": check[1],
         "time": times,
     });
 
