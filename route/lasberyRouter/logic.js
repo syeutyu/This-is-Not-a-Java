@@ -12,7 +12,6 @@ exports.checkFire = (req, res) => {
     let users = new database.lasbery({
         "spot": spot,
         "time": times,
-
     });
 
     users.save((err) => {

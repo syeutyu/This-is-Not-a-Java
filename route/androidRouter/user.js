@@ -6,53 +6,53 @@ exports.signin = (req, res) => {
     let database = req.app.get('database');
 
     console.log(id + ' , ' + pw);
-    logic.signId(id, database).then(logic.signPw(pw, database)).then((login) => {
-        if (login) {
-            console.log(login);
-            res.status(200);
-            res.end();
-        }
-    }).catch((err) => {
-        res.status(401).send({
-            message: err
-        });
-        res.end();
-    });
-
-    //logic.signInLogic(id, database).then(pw, (id) => {}).then((find) => {}).catch(() => {});
-    // database.android.findById(id, (err, find) => {
-
-    //     if (Object.keys(find).length != 0) {
-
-    //         database.android.findByPw(pw, (err, findpw) => {
-    //             if (Object.keys(findpw).length != 0) {
-
-    //                 req.session.key = findpw[0]._doc.salt;
-    //                 console.log(req.session.key);
-    //                 res.writeHead(200);
-    //                 res.end();
-
-
-    //             } else {
-
-    //                 res.status(401).send({
-    //                     message: 'Not find Pw'
-    //                 });
-
-    //                 res.end();
-    //             }
-    //         });
-
-
-    //     } else {
-    //         res.status(401).send({
-    //             message: 'Not find Id'
-    //         });
-
+    // logic.signId(id, database).then(logic.signPw(pw, database)).then((login) => {
+    //     if (login) {
+    //         console.log(login);
+    //         res.status(200);
     //         res.end();
-
     //     }
+    // }).catch((err) => {
+    //     res.status(401).send({
+    //         message: err
+    //     });
+    //     res.end();
     // });
+
+    logic.signInLogic(id, database).then(pw, (id) => {}).then((find) => {}).catch(() => {});
+    database.android.findById(id, (err, find) => {
+
+        if (Object.keys(find).length != 0) {
+
+            database.android.findByPw(pw, (err, findpw) => {
+                if (Object.keys(findpw).length != 0) {
+
+                    req.session.key = findpw[0]._doc.salt;
+                    console.log(req.session.key);
+                    res.writeHead(200);
+                    res.end();
+
+
+                } else {
+
+                    res.status(401).send({
+                        message: 'Not find Pw'
+                    });
+
+                    res.end();
+                }
+            });
+
+
+        } else {
+            res.status(401).send({
+                message: 'Not find Id'
+            });
+
+            res.end();
+
+        }
+    });
 }
 
 function makeSalt() {
@@ -67,7 +67,6 @@ exports.signup = (req, res) => {
     let pw = req.body.password;
     let code = req.body.code;
     let name = req.body.name;
-    let rno = req.body.rno;
 
 
     database.android.findById(id, (err, find) => {
@@ -88,8 +87,7 @@ exports.signup = (req, res) => {
                 "passWord": pw,
                 "salt": salt,
                 "moduleCode": code,
-                "name": name,
-                "R_num": rno
+                "name": name
 
             });
 
