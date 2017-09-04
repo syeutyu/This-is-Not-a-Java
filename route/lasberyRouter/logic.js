@@ -5,12 +5,14 @@ exports.checkFire = (req, res) => {
 
     console.log('화재발생');
     let spot = req.query.spot;
-    console.log(spot);
+    let check = spot.split(',');
+    console.log(check);
     let database = req.app.get('database');
     let times = time.getTimeStamp();
 
     let users = new database.lasbery({
         "spot": spot,
+        "check": check,
         "time": times,
     });
 
