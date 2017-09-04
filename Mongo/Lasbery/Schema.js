@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let schema = mongoose.Schema({
-    salt: { type: String, default: "", unique: true },
+    salt: { type: String, default: "" },
     time: { type: String, default: "" },
     Message: { type: String, default: "" },
     spot: { type: String, default: "" },
