@@ -103,18 +103,8 @@ public class RecordActivity extends AppCompatActivity {
             mListData.add(addInfo);
         }
 
-        public void remove(int position){
-            mListData.remove(position);
-            dataChange();
-        }
-
         public void sort(){
             Collections.sort(mListData, ListData.ALPHA_COMPARATOR);
-            dataChange();
-        }
-
-        public void dataChange(){
-            mAdapter.notifyDataSetChanged();
         }
 
     }

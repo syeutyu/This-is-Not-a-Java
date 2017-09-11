@@ -8,22 +8,19 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView history;
-    private TextView test;
-    private TextView message;
-    private TextView settings;
+    private TextView record, test, message, settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView history = (TextView) findViewById(R.id.history);
-        history.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.test,0,0,0);
-        history.setOnClickListener(new View.OnClickListener() {
+        TextView record = (TextView) findViewById(R.id.record);
+        record.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.test,0,0,0);
+        record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
                 startActivityForResult(intent, 1000);
             }
         });
@@ -38,18 +35,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView message = (TextView) findViewById(R.id.message);
-        message.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.test,0,0,0);
-
-/**푸시메시지 부분**/
-//        message.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), Activity.class);
-//                startActivityForResult(intent, 1000);
-//            }
-//        });
-
         TextView settings = (TextView) findViewById(R.id.settings);
         settings.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.test,0,0,0);
         settings.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +44,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1000);
             }
         });
-
-        // 관리자만 사용할 수 있는 기능 비활성화 개발해야 함.
-
     }
 }

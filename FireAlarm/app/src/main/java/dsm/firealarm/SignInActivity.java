@@ -1,5 +1,9 @@
 package dsm.firealarm;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -11,33 +15,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxCallback;
-import com.androidquery.callback.AjaxStatus;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity {
 
     private AQuery aQuery;
-    private TextView idInput, pwInput, findId, findPw;
-    private Button btnSignIn, btnSignUp;
+    private TextView idInput, pwInput, findId, findPw, tvSignUp;
+    private Button btnSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_sign_in);
 
         idInput = (EditText) findViewById(R.id.idInput);
         pwInput = (EditText) findViewById(R.id.pwInput);
-        btnSignUp = (Button) findViewById(R.id.btnSignup);
-        btnSignIn = (Button) findViewById(R.id.btnSignin);
+        tvSignUp = (TextView) findViewById(R.id.tvSignUp);
+        btnSignIn = (Button) findViewById(R.id.btnSignIn);
         findId = (TextView) findViewById(R.id.findId);
         findPw = (TextView) findViewById(R.id.findPw);
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
@@ -76,8 +76,10 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    if(id.length() == 0) Toast.makeText(SignInActivity.this,"아이디를 입력하세요!",Toast.LENGTH_SHORT).show();
-                    else if(password.length() == 0) Toast.makeText(SignInActivity.this,"비밀번호를 입력하세요!",Toast.LENGTH_SHORT).show();
+                    if (id.length() == 0)
+                        Toast.makeText(SignInActivity.this, "아이디를 입력하세요!", Toast.LENGTH_SHORT).show();
+                    else if (password.length() == 0)
+                        Toast.makeText(SignInActivity.this, "비밀번호를 입력하세요!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -102,7 +104,8 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    /*@Override
+/*
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -115,5 +118,7 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(SignInActivity.this, "회원가입을 완료했습니다!", Toast.LENGTH_SHORT).show();
             idInput.setText(data.getStringExtra("inputId"));
         }
-    }*/
+    }
+*/
+
 }

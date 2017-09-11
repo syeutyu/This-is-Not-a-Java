@@ -8,7 +8,6 @@ import android.view.View;
  */
 
 public class SnackbarManager {
-
     public static Snackbar createDefaultSnackbar(View v, String text, int duration) {
         final Snackbar snackbar = Snackbar.make(v, text, duration);
 

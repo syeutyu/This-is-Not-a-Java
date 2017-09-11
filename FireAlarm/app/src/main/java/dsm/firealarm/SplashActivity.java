@@ -6,17 +6,13 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-
 public class SplashActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        /** 로그 */
-        Log.i(this.getClass().getName(), "SplashActivity income!");
+        Log.d(this.getClass().getName(), "SplashActivity income!");
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -28,4 +24,5 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 3000);
     }
+
 }

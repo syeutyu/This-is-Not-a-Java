@@ -11,7 +11,7 @@
             android:icon="@drawable/firedefendertransparent"
             android:theme="@style/AppTheme.NoActionBar">
         <activity
-                android:name=".SignInActivity"
+                android:name=".MainActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -31,12 +31,12 @@
         </intent-filter>
         </service>
 
-        <service
-        android:name=".MyFirebaseInstanceIDService">
-        <intent-filter>
-        <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-        </intent-filter>
-        </service>
+        <!--<service-->
+        <!--android:name=".MyFirebaseInstanceIDService">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
+        <!--</intent-filter>-->
+        <!--</service>-->
 
     </application>
 </manifest>

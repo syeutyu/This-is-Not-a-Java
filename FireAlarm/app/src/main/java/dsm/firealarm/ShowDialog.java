@@ -55,7 +55,7 @@ public class ShowDialog extends DialogFragment {
                     startActivity(intent);
                 }
             });
-        } /*else {
+        } else {
             showInfo.setText("사용자의 비밀번호는");
             okBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -64,17 +64,13 @@ public class ShowDialog extends DialogFragment {
                 }
             });
             cancelBtn.setOnClickListener(new View.OnClickListener() {
-*//*
-
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getContext(), FindDialog.class);
                     startActivity(intent);
                 }
-오류 발생생
-*//*
            });
-        }*/
+        }
 
         // 레이아웃 XML과 뷰 변수 연결
 

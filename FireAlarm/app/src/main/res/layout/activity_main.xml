@@ -5,59 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
     tools:context="dsm.firealarm.MainActivity">
 
     <TextView
-        android:id="@+id/history"
+        android:id="@+id/record"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25"
-        android:background="#DA756C"
+        android:layout_weight="1"
+        android:background="#fcffd5"
         android:drawablePadding="15dp"
         android:gravity="left|center"
         android:paddingLeft="30dp"
         android:text="기록보기"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="20dp" />
 
     <TextView
         android:id="@+id/test"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25"
-        android:background="#E36E63"
+        android:layout_weight="1"
+        android:background="#ffffab"
         android:drawablePadding="15dp"
         android:gravity="left|center"
         android:paddingLeft="30dp"
         android:text="테스트"
-        android:textColor="#FFFFFF"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.25"
-        android:background="#ED665A"
-        android:drawablePadding="15dp"
-        android:gravity="left|center"
-        android:paddingLeft="30dp"
-        android:text="메시지"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="20dp" />
 
     <TextView
         android:id="@+id/settings"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25"
-        android:background="#F65E51"
+        android:layout_weight="1"
+        android:background="#fcffd5"
         android:drawablePadding="15dp"
         android:gravity="left|center"
         android:paddingLeft="30dp"
         android:text="설정"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="20dp" />
 
 

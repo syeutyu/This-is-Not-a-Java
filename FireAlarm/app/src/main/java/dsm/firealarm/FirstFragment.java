@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 public class FirstFragment extends Fragment {
-
     public FirstFragment() {
     }
 
