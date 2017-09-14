@@ -3,14 +3,14 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffeeed"
+                android:background="#a00000"
                 tools:context="dsm.firealarm.SplashActivity">
 
     <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/splash"/>
 
 </RelativeLayout>
