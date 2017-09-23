@@ -1,24 +1,9 @@
-exports.getTimeStamp= ()=>{
-  var d = new Date();
-  var s =
-    leadingZeros(d.getFullYear(), 4) + '-' +
-    leadingZeros(d.getMonth() + 1, 2) + '-' +
-    leadingZeros(d.getDate(), 2) + ' ' +
-
-    leadingZeros(d.getHours(), 2) + ':' +
-    leadingZeros(d.getMinutes(), 2) + ':' +
-    leadingZeros(d.getSeconds(), 2);
-
-  return s;
-}
-
-function leadingZeros(n, digits) {
-  var zero = '';
-  n = n.toString();
-
-  if (n.length < digits) {
-    for (i = 0; i < digits - n.length; i++)
-      zero += '0';
-  }
-  return zero + n;
-}
+exports.getTimeStamp = () => {
+    let NT_date = new Date();
+    let nt_month = NT_date.getMonth() + 1; //month는 0부터 시작함. 1월 = 0, 10월 = 9
+    let nt_day = NT_date.getDate(); //day는 현재 일자의 요일을 나타냄. 0 = 일요일 1 = 월요일
+    let nt_hour = NT_date.getHours();
+    let nt_min = NT_date.getMinutes();
+    let nt_sec = NT_date.getSeconds();
+    return nt_month + "월 " + nt_day + "일 " + nt_hour + "시 " + nt_min + "분 " + nt_sec + "초";
+};

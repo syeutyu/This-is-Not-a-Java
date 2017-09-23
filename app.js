@@ -1,12 +1,13 @@
-var express = require('express');
-var database = require('./Mongo/database');
-var mongoose = require('mongoose');
-var bodyparser = require('body-parser');
-var config = require('./config');
-var session = require('express-session');
-var androidRoute = require('./route/androidRouter/router');
-var lasberyRoute = require('./route/lasberyRouter/router');
-var app = express();
+const express = require('express');
+const database = require('./Mongo/database');
+const mongoose = require('mongoose');
+const bodyparser = require('body-parser');
+const config = require('./config');
+const session = require('express-session');
+const cookieParser = require('cookie-parser')
+const androidRoute = require('./route/androidRouter/router');
+const lasberyRoute = require('./route/lasberyRouter/router');
+const app = express();
 
 
 app.use(bodyparser.urlencoded({
@@ -17,9 +18,10 @@ app.use(session({
     key: 'Java',
     secret: 'secret',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { secure: true }
 }));
-
+app.use(cookieParser());
 app.use(bodyparser.json());
 
 app.use('/', androidRoute);
@@ -27,6 +29,6 @@ app.use('/', lasberyRoute);
 
 
 app.listen(3000, function() {
-    database.init(app, config);
-    console.log('Port On');
+    database.init(config);
+    console.log('Port On' + config.server_port);
 });
