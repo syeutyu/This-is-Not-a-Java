@@ -89,7 +89,7 @@ public class HttpClient {
 		return request(request);
 	}
 	
-	@Deprecated
+	
 	public Response get(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		return request(new Request.RequestBuilder(uri).setHeaders(headers).setParams(params).setRequestType(Request.Type.GET).build());
 	}
