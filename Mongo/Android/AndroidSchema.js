@@ -36,10 +36,12 @@ schema.statics.saveUser = function(data) {
 };
 
 schema.methods.updateData = function(bool) {
-    this.switch = bool;
-    this.save();
-}
-
+    if (this.switch != bool) {
+        this.switch = bool;
+        this.save();
+    }
+    return this;
+};
 model = mongoose.model('Android', schema);
 
 module.exports = model;

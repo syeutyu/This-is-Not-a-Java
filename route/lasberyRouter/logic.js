@@ -8,30 +8,31 @@ exports.checkFire = (req, res) => {
     let model = req.query.model;
     let check = req.query.check;
     let times = time.getTimeStamp();
-
-    if (checkTest(model, check)) {
-        lasbery.saveFire(model, check, times);
-        android.find({ "code": model }).then((data) => {
-            (0 < data.length) ? fcmSend(data): throwError();
+    checkTest(model, check, (bool) => {
+        if (bool) {
+            lasbery.saveFire(model, check, times);
+            android.find({ "code": model }).then((data) => {
+                (0 < data.length) ? fcmSend(data): throwError();
+                res.end();
+            }).catch((err) => {
+                console.log('화재 발생 Error');
+                console.log(err);
+                res.status(500);
+                res.end();
+            });
+        } else {
+            console.log('테스트를 위해서는 android의 테스트를 활성화해주세요');
             res.end();
-        }).catch((err) => {
-            console.log('화재 발생 Error');
-            console.log(err);
-            res.status(500);
-            res.end();
-        });
-    } else {
-        console.log('테스트를 위해서는 android의 테스트를 활성화해주세요');
-        res.end();
-    }
+        }
+    });
 };
 
-function checkTest(code, bool) {
-    if (bool == 'false') return true;
+function checkTest(code, bool, callback) {
+    if (bool == 'false') callback(true);
     else android.findOne({ "code": code, "switch": bool })
         .then((data) => {
-            if (data) return false;
-            else return true;
+            if (data) callback(true);
+            else callback(false);
         });
 }
 

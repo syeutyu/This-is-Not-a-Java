@@ -17,10 +17,9 @@ app.use(bodyparser.urlencoded({
 app.use(session({
     key: 'Java',
     secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    resave: false
 }));
+
 app.use(cookieParser());
 app.use(bodyparser.json());
 

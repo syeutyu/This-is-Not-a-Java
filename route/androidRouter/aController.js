@@ -7,7 +7,7 @@ exports.splash = (req, res) => {
     android.checkSave(token).then(() => {
         console.log('정보 있음');
         req.session.key = token;
-        res.status(200).send({ "cookie ": req.session.key }).end();
+        res.status(200).end();
     }).catch((err) => {
         console.log(err);
         res.status(400).end();
@@ -48,13 +48,14 @@ exports.search = (req, res) => { //
 
 exports.test = (req, res) => {
     let key = req.session.key;
-    android.findOne(key)
+    let bool = req.body.bool;
+    android.findOne({ "token": key })
         .then((userData) => {
-            userData.updateData(true);
+            userData.updateData(bool);
         })
         .then(lasbery.find({ bool })
             .then((data) => {
-                if (data) res.status(200).json(data).end();
+                if (data) res.status(200).end();
                 else res.status(403).end();
             }));
 };
