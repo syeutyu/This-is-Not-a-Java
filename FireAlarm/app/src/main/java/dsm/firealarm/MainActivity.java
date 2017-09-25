@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView record, test, message, settings;
+    private TextView record, test, settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView record = (TextView) findViewById(R.id.record);
-        record.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.test,0,0,0);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         TextView test = (TextView) findViewById(R.id.test);
-        test.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.test,0,0,0);
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         TextView settings = (TextView) findViewById(R.id.settings);
-        settings.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.test,0,0,0);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

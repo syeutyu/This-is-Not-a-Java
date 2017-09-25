@@ -8,7 +8,6 @@
             android:id="@+id/mTestImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/logo"
             android:paddingTop="10dp"
             android:paddingLeft="10dp"/>
 

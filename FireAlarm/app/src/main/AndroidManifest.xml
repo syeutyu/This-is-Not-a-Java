@@ -11,7 +11,7 @@
             android:icon="@drawable/firedefendertransparent"
             android:theme="@style/AppTheme.NoActionBar">
         <activity
-                android:name=".MainActivity"
+                android:name=".LogInActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".SettingActivity"/>
         <activity android:name=".TestActivity"/>
