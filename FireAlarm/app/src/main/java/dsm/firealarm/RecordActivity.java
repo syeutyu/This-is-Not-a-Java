@@ -119,19 +119,19 @@ public class RecordActivity extends AppCompatActivity {
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
 
-        mAdapter.addItem(getResources().getDrawable(R.drawable.logo),
+        mAdapter.addItem(getResources().getDrawable(R.drawable.history),
                 "박소현",
                 "화재 발생 장소 1",
                 "2014-02-18");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.logo),
+        mAdapter.addItem(getResources().getDrawable(R.drawable.history),
                 "이동현",
                 "화재 발생 장소 2",
                 "2014-02-01");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.logo),
+        mAdapter.addItem(getResources().getDrawable(R.drawable.history),
                 "김경민",
                 "화재 발생 장소 3",
                 "2014-02-04");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.logo),
+        mAdapter.addItem(getResources().getDrawable(R.drawable.history),
                 "나호겸",
                 "화재 발생 장소 4",
                 "2014-02-15");
