@@ -1,16 +1,10 @@
 package dsm.firealarm;
 
-import com.google.firebase.messaging.RemoteMessage;
+        import com.google.firebase.messaging.RemoteMessage;
 
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.PowerManager;
-import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 /**
  * Created by Sohyeon Park on 2017-09-05.
@@ -21,35 +15,39 @@ import android.support.v4.app.NotificationCompat;
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
     private static final String TAG = "FirebaseMsgService";
 
+    private String msg;
+
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        Log.d(TAG, "From: " + remoteMessage.getFrom());
 
-        sendPushNotification(remoteMessage.getData().get("message"));
-    }
+        if (remoteMessage.getData().size() > 0) {
+            Log.d(TAG, "Mesage data payload: " + remoteMessage.getData());
+        }
 
-    private void sendPushNotification(String message) {
-        System.out.println("received message : " + message);
+        if (remoteMessage.getNotification() != null) {
+            Log.d(TAG, "Mesage Notification Body: " + remoteMessage.getNotification());
+        }
+
+        msg = remoteMessage.getNotification().getBody();
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
 
-        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.logo).setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher) )
-                .setContentTitle("Push Title ")
-                .setContentText(message)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri).setLights(000000255,500,2000)
-                .setContentIntent(pendingIntent);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, MainActivity.class), 0);
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
+//                .setContentText(msg)
+//                .setAutoCancel(true)
+//                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+//                .setVibrate(new long[]{1, 1000});
 
-        PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG");
-        wakelock.acquire(5000);
-
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+//        NotificationManager notificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        notificationManager.notify(0/* ID of notification */, mBuilder.build());
+//
+//        mBuilder.setContentIntent(contentIntent);
     }
 }
