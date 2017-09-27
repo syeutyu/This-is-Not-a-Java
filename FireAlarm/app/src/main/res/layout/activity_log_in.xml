@@ -8,16 +8,29 @@
               android:background="@drawable/login">
 
     <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/linearLayout1">
+            android:id="@+id/linearLayout1"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
 
         <EditText
                 android:id="@+id/inputName"
                 android:background="@drawable/rounded"
-                android:layout_width="300dp"
-                android:layout_height="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:hint="  이름을 입력하세요"
                 android:gravity="center"
                 android:layout_below="@+id/image"
@@ -27,18 +40,21 @@
 
 
     <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/linearLayout2"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
 
         <EditText
                 android:id="@+id/inputCode"
-                android:layout_width="300dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/inputName"
                 android:layout_centerHorizontal="true"
                 android:hint="  기기 번호를 입력하세요"
@@ -48,18 +64,21 @@
     </LinearLayout>
 
     <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/linearLayout"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+            android:id="@+id/linearLayout3"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
 
         <EditText
                 android:id="@+id/inputPlace"
-                android:layout_width="300dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/inputCode"
                 android:layout_centerHorizontal="true"
                 android:hint="  설치 위치를 입력하세요"
@@ -69,31 +88,48 @@
     </LinearLayout>
 
     <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/linearLayout"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp">
 
-        <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="100dp"
-                android:layout_height="25dp"
-                android:text="취소"
-                android:textSize="13sp"
-                android:background="@drawable/rounded"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout4"
+                android:layout_weight="1">
 
-        <Button
-                android:id="@+id/btnOk"
-                android:background="@drawable/rounded"
-                android:layout_width="100dp"
-                android:layout_height="25dp"
-                android:text="확인"
-                android:textSize="13sp"
-                android:layout_marginLeft="100dp"
-                android:layout_below="@+id/linearLayout"/>
+            <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="취소"
+                    android:textSize="13sp"
+                    android:background="@drawable/rounded"
+                    android:layout_marginRight="20dp"/>
+        </LinearLayout>
 
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/linearLayout5">
+
+            <Button
+                    android:id="@+id/btnOk"
+                    android:background="@drawable/rounded"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="확인"
+                    android:textSize="13sp"
+                    android:layout_below="@+id/linearLayout"
+                    android:layout_marginLeft="20dp"/>
+        </LinearLayout>
     </LinearLayout>
+
 
 </LinearLayout>
