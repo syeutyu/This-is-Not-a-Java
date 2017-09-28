@@ -28,9 +28,10 @@ public class CheckFromArduino {
 		alarmCount = 0;
 		testCount = 0;
 		ModuleNumberCreator mnc = new ModuleNumberCreator();
+		
 		if(true == mnc.isFirst)
 		{
-			//Register(mnc.getModuleNum());
+			Register(mnc.getModuleNum());
 		}
 		
 		//Setting Pins
@@ -47,7 +48,7 @@ public class CheckFromArduino {
 			if(signal.getState().isHigh())
 			{
 				System.out.println("HIGH");
-				//alarm(mnc.getModuleNum);
+				alarm(mnc.getModuleNum());
 			}
 			else
 			{
@@ -59,11 +60,11 @@ public class CheckFromArduino {
 			if(button.getState().isHigh())
 			{
 				System.out.println("HIGH");
+				test(mnc.getModuleNum());
 			}
 			else
 			{
 				System.out.println("LOW");
-				//test(mnc.getModuleNum());
 			}
 			try {
 				Thread.sleep(1000);
@@ -73,7 +74,7 @@ public class CheckFromArduino {
 			
 			if(alarmIsSending == true)
 			{
-				if(alarmCount >=5)
+				if(alarmCount >=300)
 				{
 					alarmIsSending = false;
 					alarmCount = 0;
@@ -83,7 +84,7 @@ public class CheckFromArduino {
 			}
 			if(testIsSending == true)
 			{
-				if(testCount >=5)
+				if(testCount >= 300)
 				{
 					testIsSending = false;
 					testCount = 0;
@@ -97,20 +98,21 @@ public class CheckFromArduino {
 	//send alarm to server
     public static void alarm(String num) {
     	if(alarmIsSending == true){return;}
-		HttpClient client = new HttpClient("http://13.124.193.226", 3000);
+		HttpClient client = new HttpClient("http://13.125.19.201", 3000);
 		Map<String, Object> obj = new HashMap<String, Object>();
 		obj.put("model",num);
-		obj.put("bool", true);
+		obj.put("bool", "false");
 		client.get("/ras/send", null,obj );
 		CheckFromArduino.alarmIsSending = true;
 	}
     
     public static void test(String num) {
     	if(testIsSending == true){return;}
-		HttpClient client = new HttpClient("http://13.124.193.226", 3000);
+		
+    	HttpClient client = new HttpClient("http://13.125.19.201", 3000);
 		Map<String, Object> obj = new HashMap<String, Object>();
 		obj.put("model",num);
-		obj.put("bool", false);
+		obj.put("bool", "true");
 		client.get("/ras/send", null,obj );
 		CheckFromArduino.testIsSending = true;
 	}
@@ -118,7 +120,7 @@ public class CheckFromArduino {
     //send register id to server
     public static void Register(String num)
     {
-		HttpClient client = new HttpClient("http://13.124.193.226", 3000);
+		HttpClient client = new HttpClient("http://13.125.19.201", 3000);
 		Map<String, Object> obj = new HashMap<String, Object>();
 		obj.put("model",num);
 		client.get("/ras/set", null,obj);
