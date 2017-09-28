@@ -4,11 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#689ffff4"
     tools:context="dsm.firealarm.TestActivity">
 
-    <Button
+    <RelativeLayout
+        android:id="@+id/re"
+        android:layout_width="match_parent"
+        android:layout_height="430dp">
+        <TextView
+            android:layout_margin="15dp"
+            android:id="@+id/module"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="테스트 시작"
-            android:layout_centerHorizontal="true"/>
+            android:text="현재 접속중인 모듈명 : "
+            />
+        <TextView
+            android:fontFamily="serif"
+            android:textSize="50dp"
+            android:gravity="center"
+            android:text="Time Stampe"
+            android:id="@+id/time"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_above="@id/time"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/writer" />
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_above="@id/img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="TEST"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/re">
+    <TextView
+        android:id="@+id/intro"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:text="버튼을 눌러 활성화 해주세요"
+        />
+        <Button
+            android:id="@+id/btn"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/intro"
+            android:background="@drawable/button"
+            />
+    </RelativeLayout>
 </RelativeLayout>
