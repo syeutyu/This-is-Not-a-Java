@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 
 public interface ApiService {
 
-    public static final String API_URL = "http://13.125.19.201:3000/auth/";
+    public static final String API_URL = "https://daejava.herokuapp.com/";
 
     @FormUrlEncoded
     @POST("signin")

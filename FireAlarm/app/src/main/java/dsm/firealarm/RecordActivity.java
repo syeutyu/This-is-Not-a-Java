@@ -107,6 +107,10 @@ public class RecordActivity extends AppCompatActivity {
             Collections.sort(mListData, ListData.ALPHA_COMPARATOR);
         }
 
+        public void fillter(String searchText) {
+
+        }
+
     }
 
     @Override
