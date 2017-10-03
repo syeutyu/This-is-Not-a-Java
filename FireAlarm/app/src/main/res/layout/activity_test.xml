@@ -16,7 +16,7 @@
             android:id="@+id/module"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="현재 접속중인 모듈명 : "
+
             />
         <TextView
             android:fontFamily="serif"

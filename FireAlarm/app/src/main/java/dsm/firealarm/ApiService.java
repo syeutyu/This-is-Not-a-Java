@@ -18,5 +18,4 @@ public interface ApiService {
     Call<Void> signin(@Field("token") String token);
 
 
-
 }
