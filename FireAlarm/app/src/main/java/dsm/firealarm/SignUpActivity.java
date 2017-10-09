@@ -18,7 +18,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class LogInActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
     Retrofit mRetrofit;
     ApiService2 mApiService2;
 
@@ -30,7 +30,7 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.activity_sign_up);
 
         Log.d("xxx", FirebaseInstanceId.getInstance().getToken());
 
@@ -129,11 +129,11 @@ public class LogInActivity extends AppCompatActivity {
 //                    });
 //                } else {
 //                    if (name.length() == 0)
-//                        Toast.makeText(LogInActivity.this, "이름을 입력하세요!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SignUpActivity.this, "이름을 입력하세요!", Toast.LENGTH_SHORT).show();
 //                    else if (code.length() == 0)
-//                        Toast.makeText(LogInActivity.this, "기기 번호를 입력하세요!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SignUpActivity.this, "기기 번호를 입력하세요!", Toast.LENGTH_SHORT).show();
 //                    else
-//                        Toast.makeText(LogInActivity.this, "설치 위치를 입력하세요!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SignUpActivity.this, "설치 위치를 입력하세요!", Toast.LENGTH_SHORT).show();
 //                }
 //            }
 //        });

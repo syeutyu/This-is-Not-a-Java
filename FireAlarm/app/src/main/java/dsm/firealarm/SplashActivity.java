@@ -43,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
 //               int statusCode = status.getCode();
 //               Log.d("statusCodeㅅㅅㅅㅅㅅㅅ", Integer.toString(statusCode));
 //               if(statusCode == 400) {
-//                   Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+//                   Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
 //               } else if(statusCode==200) {
 //                   Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 //               } else {
@@ -71,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
                         if (response.code() == 400) {
                             /**회원이 아닐 경우*/
                             Log.d(this.getClass().getName(),"회원이 아닐 경우");
-                            Intent intent = new Intent(getApplication(), LogInActivity.class);
+                            Intent intent = new Intent(getApplication(), SignUpActivity.class);
                             Log.d(this.getClass().getName(),"자ㅏㅏㅏㅏㅏ");
                             startActivity(intent);
                         } else if (response.code() == 200) {
