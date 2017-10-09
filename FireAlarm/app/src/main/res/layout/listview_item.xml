@@ -4,13 +4,6 @@
               android:layout_height="match_parent"
               android:orientation="horizontal">
 
-    <ImageView
-            android:id="@+id/mTestImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"/>
-
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +11,7 @@
             android:orientation="vertical">
 
         <TextView
-                android:id="@+id/mUserName"
+                android:id="@+id/nameStr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="홍길동"
@@ -26,14 +19,14 @@
                 />
 
         <TextView
-                android:id="@+id/mSpot"
+                android:id="@+id/spotStr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="화재 발생 장소"
                 />
 
         <TextView
-                android:id="@+id/mTime"
+                android:id="@+id/timeStr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2017-08-28 21:57"
