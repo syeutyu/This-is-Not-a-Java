@@ -70,9 +70,9 @@ public class SplashActivity extends AppCompatActivity {
                         Log.d("statusCodeㅅㅅㅅㅅㅅㅅ", Integer.toString(ccode));
                         if (response.code() == 400) {
                             /**회원이 아닐 경우*/
-                            Log.d(this.getClass().getName(),"회원이 아닐 경우");
+                            Log.d(this.getClass().getName(), "회원이 아닐 경우");
                             Intent intent = new Intent(getApplication(), SignUpActivity.class);
-                            Log.d(this.getClass().getName(),"자ㅏㅏㅏㅏㅏ");
+                            Log.d(this.getClass().getName(), "자ㅏㅏㅏㅏㅏ");
                             startActivity(intent);
                         } else if (response.code() == 200) {
                             /**회원일 경우, 자동로그인*/

@@ -27,17 +27,17 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded"
                 android:hint="검색할 데이터를 입력하세요"
-                android:paddingLeft="10dp"/>
+                android:paddingLeft="10dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:paddingLeft="3dp"
-            android:paddingRight="3dp">
+            android:paddingRight="3dp"
+            android:paddingTop="3dp">
 
             <ImageView
                 android:layout_width="match_parent"

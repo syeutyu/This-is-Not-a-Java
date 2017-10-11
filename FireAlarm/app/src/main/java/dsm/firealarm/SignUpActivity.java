@@ -23,7 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
     ApiService2 mApiService2;
 
     private AQuery aQuery;
-    private EditText inputName, inputCode, inputPlace;
+    private EditText inputName, inputCode, inputPlace, inputPhoneNum;
     private Button btnCancel, btnOk;
 
     @Override
@@ -37,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         inputName = (EditText) findViewById(R.id.inputName);
         inputCode = (EditText) findViewById(R.id.inputCode);
         inputPlace = (EditText) findViewById(R.id.inputPlace);
+        inputPhoneNum = (EditText) findViewById(R.id.inputPhoneNum);
         btnCancel = (Button) findViewById(R.id.btnCancel);
         btnOk = (Button) findViewById(R.id.btnOk);
 
@@ -47,11 +48,12 @@ public class SignUpActivity extends AppCompatActivity {
                 String code= inputCode.getText().toString();
                 String place= inputPlace.getText().toString();
                 String token= FirebaseInstanceId.getInstance().getToken();
+                String tel = inputPhoneNum.getText().toString();
 
                 mRetrofit = new Retrofit.Builder().baseUrl(ApiService2.API_URL).build();
                 mApiService2 = mRetrofit.create(ApiService2.class);
 
-                Call<Void> call = mApiService2.signup(name, code, place, token);
+                Call<Void> call = mApiService2.signup(name, code, place, token, tel);
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
@@ -62,8 +64,9 @@ public class SignUpActivity extends AppCompatActivity {
                             finish();
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             startActivityForResult(intent, 1000);
-                            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "로그인 성공", 3000).show();
+                            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공", 3000).show();
                         } else {
+                            // TODO : response.code() == 403 서버에서 회원가입 에러 발생 시
                             SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "잘못된 정보입니다.", 3000).show();
                         }
                     }

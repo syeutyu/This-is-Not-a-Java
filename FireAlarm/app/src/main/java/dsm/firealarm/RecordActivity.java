@@ -1,10 +1,12 @@
 package dsm.firealarm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +16,38 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class RecordActivity extends AppCompatActivity {
 
+    Retrofit mRetrofit;
+    ApiService2 mApiService2;
     ListView listview = null;
+
+    private TextView nameStr;
+    private TextView spotStr;
+    private TextView timeStr;
 
     private class ListViewAdapter extends BaseAdapter implements Filterable {
         // Adapter에 추가된 데이터를 저장하기 위한 ArrayList. (원본 데이터 리스트)
         private ArrayList<ListViewItem> listViewItemList = new ArrayList<>();
         // 필터링된 결과 데이터를 저장하기 위한 ArrayList. 최초에는 전체 리스트 보유.
         private ArrayList<ListViewItem> filteredItemList = listViewItemList;
+
 
         Filter listFilter;
 
@@ -49,13 +71,13 @@ public class RecordActivity extends AppCompatActivity {
                 convertView = inflater.inflate(R.layout.listview_item, parent, false);
             }
 
-            // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-            TextView nameStr = (TextView) convertView.findViewById(R.id.nameStr);
-            TextView spotStr = (TextView) convertView.findViewById(R.id.spotStr);
-            TextView timeStr = (TextView) convertView.findViewById(R.id.timeStr);
-
             // Data Set(filteredItemList)에서 position에 위치한 데이터 참조 획득
             ListViewItem listViewItem = filteredItemList.get(position);
+
+            // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
+            nameStr = (TextView) convertView.findViewById(R.id.nameStr);
+            spotStr = (TextView) convertView.findViewById(R.id.spotStr);
+            timeStr = (TextView) convertView.findViewById(R.id.timeStr);
 
             // 아이템 내 각 위젯에 데이터 반영
             nameStr.setText(listViewItem.getNameStr());
@@ -146,6 +168,55 @@ public class RecordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
+
+        mRetrofit = new Retrofit.Builder().baseUrl(ApiService2.API_URL).build();
+        mApiService2 = mRetrofit.create(ApiService2.class);
+
+
+        String token= FirebaseInstanceId.getInstance().getToken();
+        Log.d("xxx",token);
+
+        Call<Void> call = mApiService2.search(token);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call call, retrofit2.Response response) {
+                Log.d(this.getClass().getName(),"기록보기 토큰 실행");
+                int codee = response.code();
+                Log.d("상태코드는요", Integer.toString(codee));
+                if(response.code()==203) {
+                    /** 토큰값 제대로 줬을 때**/
+                    Log.d("xxx", Integer.toString(codee));
+//                    Call<JsonObject> calll = mApiService2.getSearch();
+//                    call.enqueue(new Callback() {
+//                        @Override
+//                        public void onResponse(Call call, Response response) {
+//                            Log.d(response.body().toString(), "responseCheck");
+////                            Iterator<String> iter = json.keys();
+////                            while (iter.hasNext()) {
+////                                String key = iter.next();
+////                                try {
+////                                    Object value = json.get(key);
+////                                } catch (JSONException e) {
+////                                    // Something went wrong!
+////                                }
+////                            }
+//                            JsonObject jsonObject = (JsonObject) response.body();
+//                            Log.d(jsonObject.toString(), "checkJson");
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call call, Throwable t) {
+//                            Log.d(t.toString(), "logCheck");
+//                        }
+//                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "서버 오류가 발생하였습니다.", Toast.LENGTH_LONG);
+            }
+        });
 
         ListViewAdapter adapter;
 
