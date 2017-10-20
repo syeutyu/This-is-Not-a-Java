@@ -23,40 +23,22 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
     private static final String TAG = "FirebaseMsgService";
-//    private String msg;
-    String text;
-    String tels;
-
-    public String getText(){
-        return text;
-    }
-
-    public String getTels(){
-        return tels;
-    }
+    // private String msg;
+    String text, tels;
 
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(TAG, "From: " + remoteMessage.getFrom()); // 306850044248
-        Log.d("xxx", remoteMessage.getData().get("text"));
-        Log.d("yyy",remoteMessage.getData().get("tels"));
-        Log.d("전체 데이터",remoteMessage.getData().toString());
+        Log.i("textCheck", remoteMessage.getData().get("text"));
+        Log.i("telsCheck", remoteMessage.getData().get("tels"));
+        Log.i("allData", remoteMessage.getData().toString());
 
         text = remoteMessage.getData().get("text");
         tels = remoteMessage.getData().get("tels");
-        Log.d("xxx", tels);
-        Log.d("yyy",text);
-//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//        intent.putExtra("tels", tels);
-//        intent.putExtra("text",text);
-//        startActivity(intent);
 
-//        tels = "1";
-//        text = "테스트";
-//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//        intent.putExtra("tels", tels);
-//        intent.putExtra("text",text);
+        Log.i("xxx", tels);
+        Log.i("yyy", text);
 
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Mesage data payload: " + remoteMessage.getData());
