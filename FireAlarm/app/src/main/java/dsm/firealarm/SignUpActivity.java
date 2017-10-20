@@ -2,16 +2,14 @@ package dsm.firealarm;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import com.androidquery.AQuery;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,11 +17,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class SignUpActivity extends AppCompatActivity {
-    Retrofit mRetrofit;
-    ApiService2 mApiService2;
+    Retrofit mretrofit;
+    ApiService mApiService;
 
-    private AQuery aQuery;
-    private EditText inputName, inputCode, inputPlace, inputPhoneNum;
+    private EditText inputName, inputCode, inputPlace;
     private Button btnCancel, btnOk;
 
     @Override
@@ -32,12 +29,12 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        Log.d("xxx", FirebaseInstanceId.getInstance().getToken());
+        // Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
 
         inputName = (EditText) findViewById(R.id.inputName);
         inputCode = (EditText) findViewById(R.id.inputCode);
         inputPlace = (EditText) findViewById(R.id.inputPlace);
-        inputPhoneNum = (EditText) findViewById(R.id.inputPhoneNum);
+        // inputPhoneNum = (TextView) findViewById(R.id.inputPhoneNum);
         btnCancel = (Button) findViewById(R.id.btnCancel);
         btnOk = (Button) findViewById(R.id.btnOk);
 
@@ -45,26 +42,39 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = inputName.getText().toString();
-                String code= inputCode.getText().toString();
-                String place= inputPlace.getText().toString();
-                String token= FirebaseInstanceId.getInstance().getToken();
-                String tel = inputPhoneNum.getText().toString();
+                String code = inputCode.getText().toString();
+                String place = inputPlace.getText().toString();
+                String token = FirebaseInstanceId.getInstance().getToken();
 
-                mRetrofit = new Retrofit.Builder().baseUrl(ApiService2.API_URL).build();
-                mApiService2 = mRetrofit.create(ApiService2.class);
+                final TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+                String tel = telephonyManager.getLine1Number();
+                if (tel.startsWith("+82")) {
+                    tel = tel.replace("+82", "0");
+                }
 
-                Call<Void> call = mApiService2.signup(name, code, place, token, tel);
+/*                if(code != null) {
+                    Intent intent1 = new Intent(getApplicationContext(), TestActivity.class);
+                    intent1.putExtra("code",code);
+                    startActivity(intent1);
+                } else {
+                    Log.d(this.getClass().getName(), "잘못된 코드 전달");
+                }*/
+
+                mretrofit = new Retrofit.Builder().baseUrl(ApiService.API_URL).build();
+                mApiService = mretrofit.create(ApiService.class);
+
+                Call<Void> call = mApiService.signup(name, code, place, token, tel);
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Log.d(this.getClass().getName(), "로그인 입니다");
-                        int ccode = response.code();
-                        Log.d("statusCodeㅅㅅㅅㅅㅅㅅ", Integer.toString(ccode));
+                        Log.d(this.getClass().getName(), "로그인 입니다.");
+                        int statusCode = response.code();
+                        Log.i("statusCode-----", Integer.toString(statusCode));
                         if (response.code() == 201) {
                             finish();
                             Intent intent = new Intent(getApplication(), MainActivity.class);
-                            startActivityForResult(intent, 1000);
                             SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공", 3000).show();
+                            startActivityForResult(intent, 1000);
                         } else {
                             // TODO : response.code() == 403 서버에서 회원가입 에러 발생 시
                             SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "잘못된 정보입니다.", 3000).show();
@@ -73,72 +83,10 @@ public class SignUpActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "서버 오류가 발생하였습니다.", Toast.LENGTH_LONG);
+                        SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "서버 오류가 발생하였습니다.", 3000).show();
                     }
                 });
             }
-            });
-
-
-
-
-//        inputName = (EditText) findViewById(R.id.inputName);
-//        inputCode = (EditText) findViewById(R.id.inputCode);
-//        inputPlace = (EditText) findViewById(R.id.inputPlace);
-//        btnCancel = (Button) findViewById(R.id.btnCancel);
-//        btnOk = (Button) findViewById(R.id.btnOk);
-//
-//        btnCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplication(), SplashActivity.class);
-//                startActivityForResult(intent, 1000);
-//            }
-//        });
-//
-//        btnOk.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                aQuery = new AQuery(getApplicationContext());
-//
-//                String name = inputName.getText().toString();
-//                String code = inputCode.getText().toString();
-//                String place = inputPlace.getText().toString();
-//                String token = "AIzaSyCtjT141zecUihrV1AZVFsBVdShw84iWz0";
-//
-//                if (!name.isEmpty() && !code.isEmpty()) {
-//                    Map<String, String> params = new HashMap<>();
-//
-//                    params.put("name", name);
-//                    params.put("code", code);
-//                    params.put("place", place);
-//                    params.put("token",token);
-//                    Log.d("send data", params.toString());
-//
-//                    aQuery.ajax("http://http://13.125.19.201:3000/auth/signup", params, String.class, new AjaxCallback<String>() {
-//                        @Override
-//                        public void callback(String url, String response, AjaxStatus status) {
-//                            int statusCode = status.getCode();
-//                            Log.d("statusCode아ㅏㅏㅏㅏㅏㅏ", Integer.toString(statusCode));
-//                            if (statusCode == 200) {
-//                                finish();
-//                                Intent intent = new Intent(getApplication(), MainActivity.class);
-//                                startActivityForResult(intent, 1000);
-//                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "로그인 성공", 3000).show();
-//                            } else {
-//                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "잘못된 정보입니다.", 3000).show();
-//                            }
-//                        }
-//                    });
-//                } else {
-//                    if (name.length() == 0)
-//                        Toast.makeText(SignUpActivity.this, "이름을 입력하세요!", Toast.LENGTH_SHORT).show();
-//                    else if (code.length() == 0)
-//                        Toast.makeText(SignUpActivity.this, "기기 번호를 입력하세요!", Toast.LENGTH_SHORT).show();
-//                    else
-//                        Toast.makeText(SignUpActivity.this, "설치 위치를 입력하세요!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        });
     }
 }
