@@ -1,9 +1,14 @@
 package dsm.firealarm;
 
-        import com.google.firebase.messaging.RemoteMessage;
+import com.google.firebase.messaging.RemoteMessage;
 
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 /**
@@ -20,6 +25,9 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+//        Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+//        vibrator.vibrate(5000);
+
         Log.d(TAG, "From: " + remoteMessage.getFrom());
 
         if (remoteMessage.getData().size() > 0) {
@@ -38,16 +46,16 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                 new Intent(this, MainActivity.class), 0);
 
-//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
-//                .setContentText(msg)
-//                .setAutoCancel(true)
-//                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-//                .setVibrate(new long[]{1, 1000});
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.splash)
+                .setContentTitle(msg)
+                .setAutoCancel(true)
+                .setSound(Uri.parse("android.resource://"
+                        + this.getPackageName() + "/" + R.raw.siren));
 
-//        NotificationManager notificationManager =
-//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//        notificationManager.notify(0/* ID of notification */, mBuilder.build());
-//
-//        mBuilder.setContentIntent(contentIntent);
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0 /* ID of notification */, mBuilder.build());
+
+        mBuilder.setContentIntent(contentIntent);
     }
 }
