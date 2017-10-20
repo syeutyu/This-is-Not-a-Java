@@ -1,12 +1,17 @@
 package dsm.alarmsms;
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
+import android.telephony.SmsManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -19,20 +24,39 @@ import com.google.firebase.messaging.RemoteMessage;
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
     private static final String TAG = "FirebaseMsgService";
 //    private String msg;
+    String text;
+    String tels;
+
+    public String getText(){
+        return text;
+    }
+
+    public String getTels(){
+        return tels;
+    }
 
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(TAG, "From: " + remoteMessage.getFrom()); // 306850044248
         Log.d("xxx", remoteMessage.getData().get("text"));
+        Log.d("yyy",remoteMessage.getData().get("tels"));
+        Log.d("전체 데이터",remoteMessage.getData().toString());
 
-/*        String text = remoteMessage.getData().get("text");
-        Intent intentText = new Intent(getApplicationContext(), MainActivity.class);
-        intentText.putExtra("text", text);
+        text = remoteMessage.getData().get("text");
+        tels = remoteMessage.getData().get("tels");
+        Log.d("xxx", tels);
+        Log.d("yyy",text);
+//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//        intent.putExtra("tels", tels);
+//        intent.putExtra("text",text);
+//        startActivity(intent);
 
-        String tels = remoteMessage.getData().get("tels");
-        Intent intentTels = new Intent(getApplicationContext(), MainActivity.class);
-        intentTels.putExtra("tels", tels);*/
+//        tels = "1";
+//        text = "테스트";
+//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//        intent.putExtra("tels", tels);
+//        intent.putExtra("text",text);
 
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Mesage data payload: " + remoteMessage.getData());
@@ -61,5 +85,29 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         notificationManager.notify(0*//* ID of notification *//*, mBuilder.build());
 
         mBuilder.setContentIntent(contentIntent);*/
+        sendSMS(tels, text);
+    }
+
+    private void sendSMS(String tels, String text) {
+        String SENT = "SMS SENT";
+        String DELIVERED = "SMS_DELIVERED";
+
+        PendingIntent sentPI = PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0);
+        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0, new Intent(DELIVERED), 0);
+
+        /** When the SMS has been sent  */
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                switch (getResultCode()) {
+                    case Activity.RESULT_OK:
+                        Toast.makeText(getBaseContext(), "알림 문자 메시지가 전송되었습니다.", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        }, new IntentFilter(SENT));
+
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(tels, null, text, sentPI, deliveredPI);
     }
 }
