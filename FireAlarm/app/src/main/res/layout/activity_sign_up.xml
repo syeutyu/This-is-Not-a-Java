@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="0.6">
 
     </LinearLayout>
 
@@ -21,9 +21,9 @@
         android:layout_weight="0.2"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:paddingTop="20dp">
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:paddingTop="30dp">
 
         <EditText
             android:id="@+id/inputName"
@@ -34,9 +34,8 @@
             android:gravity="center"
             android:hint="  이름을 입력하세요"
             android:inputType="textPersonName"
-            android:textSize="13sp" />
+            android:textSize="15sp" />
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -45,8 +44,8 @@
         android:layout_weight="0.2"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
         android:paddingTop="20dp">
 
         <EditText
@@ -58,32 +57,8 @@
             android:background="@drawable/rounded"
             android:gravity="center"
             android:hint="  기기 번호를 입력하세요"
-            android:textSize="13sp"
-            android:inputType="text"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:paddingTop="20dp">
-
-        <EditText
-            android:id="@+id/inputPhoneNum"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/inputName"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/rounded"
-            android:gravity="center"
-            android:hint="  휴대폰 번호를 입력하세요"
-            android:textSize="13sp"
-            android:inputType="phone"/>
+            android:inputType="text"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -93,8 +68,8 @@
         android:layout_weight="0.2"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
         android:paddingTop="20dp">
 
         <EditText
@@ -106,13 +81,13 @@
             android:background="@drawable/rounded"
             android:gravity="center"
             android:hint="  설치 위치를 입력하세요"
-            android:textSize="13sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3"
+        android:layout_weight="0.1"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -120,7 +95,9 @@
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="1">
 
             <Button
@@ -133,12 +110,13 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
-
         <LinearLayout
             android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="1">
 
             <Button
@@ -152,6 +130,4 @@
                 android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>
