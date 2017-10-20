@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,13 +22,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TestActivity extends AppCompatActivity {
     private int count = 180;
     private Boolean check = false;
-    private TextView module; private TextView time; private TextView intro;
+    private TextView module;
+    private TextView time;
+    private TextView intro;
     private Button btn;
     private CountDownTimer timer;
-    private Retrofit retrofit;
-    private testRetropit testRetropit;
+    Retrofit mretrofit;
+    ApiService mApiService;
     private Call<Void> call;
-    private String token,code;
+    private String token, code, value;
     private Intent intent;
 
     @Override
@@ -34,9 +38,14 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         findId();
-        module.setText("현재 접속중인 모듈명 : "+code);
-        retrofit = new Retrofit.Builder().baseUrl("https://daejava.herokuapp.com").build();
-        testRetropit = retrofit.create(testRetropit.class);
+
+//        Intent intent1 = getIntent();
+//        code = intent1.getStringExtra("code");
+
+        // TODO: 모듈명 확인
+        // module.setText("현재 접속중인 모듈명 : "+code);
+        mretrofit = new Retrofit.Builder().baseUrl("https://daejava.herokuapp.com").build();
+        mApiService = mretrofit.create(ApiService.class);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,13 +54,14 @@ public class TestActivity extends AppCompatActivity {
                     timer = new CountDownTimer(180 * 1000, 1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
-                            call = testRetropit.test(true, token);
+                            call = mApiService.test(true, token);
                             call.enqueue(new Callback<Void>() {
                                 @Override
                                 public void onResponse(Call<Void> call, Response<Void> response) {
                                     int code = response.code();
                                     Log.d("Response", Integer.toString(code));
                                 }
+
                                 @Override
                                 public void onFailure(Call<Void> call, Throwable t) {
                                     Toast.makeText(getApplicationContext(), "정보받아오기 실패", Toast.LENGTH_LONG).show();
@@ -65,12 +75,13 @@ public class TestActivity extends AppCompatActivity {
 
                         @Override
                         public void onFinish() {
-                            call = testRetropit.test(false, token);
+                            call = mApiService.test(false, token);
                             call.enqueue(new Callback<Void>() {
                                 @Override
                                 public void onResponse(Call<Void> call, Response<Void> response) {
                                     time.setText("버튼을 눌러 활성화 해주세요");
                                 }
+
                                 @Override
                                 public void onFailure(Call<Void> call, Throwable t) {
                                     Toast.makeText(getApplicationContext(), "정보받아오기 실패", Toast.LENGTH_LONG).show();
@@ -80,12 +91,13 @@ public class TestActivity extends AppCompatActivity {
                         }
                     }.start();
                 } else {
-                    call = testRetropit.test(false, token);
+                    call = mApiService.test(false, token);
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             time.setText("Time Stampe");
                         }
+
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
                             Toast.makeText(getApplicationContext(), "정보받아오기 실패", Toast.LENGTH_LONG).show();
@@ -106,10 +118,9 @@ public class TestActivity extends AppCompatActivity {
         time = (TextView) findViewById(R.id.time);
         intro = (TextView) findViewById(R.id.intro);
         btn = (Button) findViewById(R.id.btn);
+        //value = ()
         intent = getIntent();
-//        token = intent.getStringExtra("token");
-        token ="dXeG1erpvVQ:APA91bEeSWm0CMszivoBA8hwgqqssg5aHtRESYgFO_mSiRuBKY-J6MCw2NaqdSshNTe2Dloah35Y-OrPPtSmAh_fsVmSHs0iN5Yyu7sqex2wZrDh1KIyQhTOx9n-6Kt8phSGXEfzS5Oa";
-        code = intent.getStringExtra("module");
+        token = FirebaseInstanceId.getInstance().getToken();
 
 
     }
