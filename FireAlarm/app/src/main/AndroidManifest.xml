@@ -3,31 +3,36 @@
     package="dsm.firealarm">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     // 네트워크 사용을 위해
     <application
         android:allowBackup="true"
-        android:icon="@drawable/login"
+        android:icon="@drawable/splash"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".RecordActivity"
             android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".SignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".SplashActivity">
 
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SignUpActivity">
-
-        </activity>
-
-
-        <activity android:name=".SettingActivity" />
         <activity android:name=".TestActivity"></activity>
 
         <service android:name=".FirebaseMessagingService">
@@ -36,11 +41,10 @@
             </intent-filter>
         </service>
 
-        <!--<service -->
-        <!--android:name=".MyFirebaseInstanceIDService"> -->
-        <!--<intent-filter> -->
-        <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/> -->
-        <!--</intent-filter> -->
-        <!--</service> -->
+        <service android:name=".FirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>
