@@ -16,6 +16,14 @@ public class ListViewItem {
     public String nameStr; // 유저 네임
     public String spotStr; // 화재 발생 장소
     public String timeStr; // 화재 발생 시각
+    public String codeStr;
+
+    public ListViewItem(String nameStr, String spotStr, String timeStr, String codeStr) {
+        this.nameStr = nameStr;
+        this.spotStr = spotStr;
+        this.timeStr = timeStr;
+        this.codeStr = codeStr;
+    }
 
     public String getNameStr() {
         return nameStr;
@@ -40,4 +48,8 @@ public class ListViewItem {
     public void setTimeStr(String timeStr) {
         this.timeStr = timeStr;
     }
+
+    public String getCodeStr() {return codeStr;}
+
+    public void setCodeStr(String codeStr) {this.codeStr = codeStr;}
 }
