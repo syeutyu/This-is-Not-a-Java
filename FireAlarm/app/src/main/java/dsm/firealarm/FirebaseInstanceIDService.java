@@ -1,5 +1,7 @@
 package dsm.firealarm;
 
+import android.util.Log;
+
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
@@ -18,6 +20,6 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService{
     public void onTokenRefresh() {
         // Get updated InstanceID token.
         String refreshedtoken = FirebaseInstanceId.getInstance().getToken();
-
+        Log.d(TAG, "onTokenRefresh: "+refreshedtoken);
     }
 }
