@@ -23,8 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        final String token = FirebaseInstanceId.getInstance().getToken().toString();
-        Log.d("splash token-----", token);
+        Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
 
         Handler handler = new Handler();
         Log.d(this.getClass().getName(), "핸들러 실행 전");
@@ -33,24 +32,26 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 mretrofit = new Retrofit.Builder().baseUrl(ApiService.API_URL).build();
                 mApiService = mretrofit.create(ApiService.class);
-                Log.d(this.getClass().getName(), "토큰 보내기 전");
 
-                Call<Void> call = mApiService.signin(token);
+                Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
+
+                Log.d(this.getClass().getName(), "토큰 보내기 전");
+                Call<Void> call = mApiService.signin(FirebaseInstanceId.getInstance().getToken());
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Log.d(this.getClass().getName(), "onResponse: ");
+                        Log.d(this.getClass().getName(), "응답 실행");
                         int statusCode = response.code();
-                        Log.d("statusCode-----", String.valueOf(statusCode));
+                        Log.i("statusCode-----", String.valueOf(statusCode));
 
                         if (response.code() == 400) {
                             /** 비회원 */
-                            Log.d(this.getClass().getName(), "비회원");
+                            Log.i(this.getClass().getName(), "비회원");
                             Intent intent = new Intent(getApplication(), SignUpActivity.class);
                             startActivity(intent);
                         } else if (response.code() == 200) {
                             /** 회원 */
-                            Log.d(this.getClass().getName(), "회원");
+                            Log.i(this.getClass().getName(), "회원");
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             startActivity(intent);
                         }
