@@ -12,13 +12,17 @@
         android:layout_marginRight="7dp"
         android:layout_marginTop="7dp"
         android:orientation="vertical">
-
+        <TextView
+            android:id="@+id/timeStr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017-08-28 21:57"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
         <TextView
             android:id="@+id/nameStr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="홍길동"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:text="홍길동" />
 
         <TextView
             android:id="@+id/spotStr"
@@ -26,11 +30,13 @@
             android:layout_height="wrap_content"
             android:text="화재 발생 장소" />
 
+
+
         <TextView
-            android:id="@+id/timeStr"
-            android:layout_width="wrap_content"
+            android:id="@+id/codeStr"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="2017-08-28 21:57" />
+            android:text="Example Code"/>
     </LinearLayout>
 
 </LinearLayout>
