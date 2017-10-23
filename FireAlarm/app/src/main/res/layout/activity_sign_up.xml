@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.6">
+        android:layout_weight="0.5">
 
     </LinearLayout>
 
@@ -23,7 +23,7 @@
         android:orientation="vertical"
         android:paddingLeft="80dp"
         android:paddingRight="80dp"
-        android:paddingTop="30dp">
+        android:paddingTop="20dp">
 
         <EditText
             android:id="@+id/inputName"
@@ -89,45 +89,19 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.1"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="120dp"
+        android:paddingRight="120dp">
 
-        <LinearLayout
-            android:id="@+id/linearLayout4"
+        <Button
+            android:id="@+id/btnOk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="7dp"
-                android:background="@drawable/rounded"
-                android:text="취소"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="35dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/btnOk"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linearLayout"
-                android:layout_marginLeft="7dp"
-                android:background="@drawable/rounded"
-                android:text="확인"
-                android:textSize="13sp" />
-        </LinearLayout>
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/rounded"
+            android:text="확인"
+            android:textSize="13sp" />
     </LinearLayout>
+
 </LinearLayout>

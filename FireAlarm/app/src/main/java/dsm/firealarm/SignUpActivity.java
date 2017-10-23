@@ -21,7 +21,7 @@ public class SignUpActivity extends AppCompatActivity {
     ApiService mApiService;
 
     private EditText inputName, inputCode, inputPlace;
-    private Button btnCancel, btnOk;
+    private Button btnOk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class SignUpActivity extends AppCompatActivity {
         inputCode = (EditText) findViewById(R.id.inputCode);
         inputPlace = (EditText) findViewById(R.id.inputPlace);
         // inputPhoneNum = (TextView) findViewById(R.id.inputPhoneNum);
-        btnCancel = (Button) findViewById(R.id.btnCancel);
         btnOk = (Button) findViewById(R.id.btnOk);
 
         btnOk.setOnClickListener(new View.OnClickListener() {
