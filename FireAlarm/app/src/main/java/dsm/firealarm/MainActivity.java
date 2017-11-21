@@ -75,13 +75,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*      settings = (TextView) findViewById(R.id.settings);
+      settings = (TextView) findViewById(R.id.settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivityForResult(intent, 1000);
             }
-        });*/
+        });
     }
 }

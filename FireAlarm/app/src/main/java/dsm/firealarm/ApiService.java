@@ -24,9 +24,26 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("auth/search")
-    Call<JsonObject> search (@Field("token")String token);
+    // Call<JsonObject> search (@Field("token")String token);
+    Call<JsonObject> search (@Field("token")String token, @Field("category")String category,@Field("place")String place);
 
     @FormUrlEncoded
     @POST("/auth/test")
     Call<Void> test (@Field("bool") Boolean bool, @Field("token") String key);
+
+    @FormUrlEncoded
+    @POST("mypage/init")
+    Call<JsonObject> settings (@Field("token")String token);
+
+    @FormUrlEncoded
+    @POST("mypage/add")
+    Call<Void> add (@Field("code") String code, @Field("place") String place, @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("/mypage/delete")
+    Call<Void> delete (@Field("token")String token, @Field("code")String code);
+
+    @FormUrlEncoded
+    @POST("/mypage/modify")
+    Call<Void> modify (@Field("token")String token, @Field("place")String place,@Field("code")String code);
 }

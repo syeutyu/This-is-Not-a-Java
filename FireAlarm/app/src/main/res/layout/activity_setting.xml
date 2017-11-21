@@ -1,40 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dsm.firealarm.SettingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="dsm.firealarm.SettingActivity"
-                android:background="#ffeeed">
+                android:layout_height="60dp"
+                android:background="#a00000"
+                android:gravity="center"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
 
-    <EditText
-            android:id="@+id/etName"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="151dp"
-            android:hint="이름"/>
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="마이페이지"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
-    <EditText
-            android:id="@+id/etRno"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/etName"
-            android:layout_centerHorizontal="true"
-            android:hint="호실"/>
+                <!--                    <TextView
+                                        android:id="@+id/modify"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:layout_marginLeft="10dp"
+                                        android:text="수정"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="15sp" />
 
-    <!--<TextView-->
-    <!--android:id="@+id/tvModified"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="60dp"-->
-    <!--android:text="수정"-->
-    <!--android:layout_below="@+id/etRno" />-->
+                                    <TextView
+                                        android:id="@+id/delete"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="right"
+                                        android:layout_marginRight="10dp"
+                                        android:text="삭제"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="15sp" />-->
+            </android.support.v7.widget.Toolbar>
+        </LinearLayout>
 
-    <!--<TextView-->
-    <!--android:id="@+id/tvCompletion"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="완료" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-</RelativeLayout>
+            <ListView
+                android:id="@+id/listview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></ListView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="#a00000"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/plus_icon" />
+
+</android.support.design.widget.CoordinatorLayout>

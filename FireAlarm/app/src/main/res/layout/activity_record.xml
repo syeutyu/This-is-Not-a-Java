@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded"
-                android:hint="화재 발생 시각을 입력하세요"
+                android:hint="화재 발생 장소를 입력하세요"
                 android:paddingLeft="10dp" />
         </LinearLayout>
 
@@ -40,6 +40,7 @@
             android:paddingTop="3dp">
 
             <ImageView
+                android:id="@+id/research"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/magnifying_glass" />

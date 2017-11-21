@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -39,18 +40,25 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
 
         msg = remoteMessage.getNotification().getBody();
+        Log.d("onMessageReceived: ", msg);
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+/*
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK
+                | PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG");
+        wakeLock.acquire(3000);*/
 
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, MainActivity.class), 0);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0 /*Request Code */, new Intent(this, MainActivity.class), 0);
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.splash)
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.splash)
                 .setContentTitle(msg)
                 .setAutoCancel(true)
                 .setSound(Uri.parse("android.resource://"
                         + this.getPackageName() + "/" + R.raw.siren));
+        // .setVibrate(new long[]{1000, 1000})
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

@@ -60,6 +60,14 @@ public class TestActivity extends AppCompatActivity {
                                 public void onResponse(Call<Void> call, Response<Void> response) {
                                     int code = response.code();
                                     Log.d("Response", Integer.toString(code));
+                                    if(response.code()==200) {
+                                        Log.d("TestCk: ", "Success");
+                                    } else if(response.code()==403) {
+                                        // Log.d("TestCk: ", "Failure");
+                                        Toast.makeText(getApplicationContext(), "기기를 찾지 못했습니다.", Toast.LENGTH_LONG).show();
+                                    } else if(response.code()==500) {
+                                        Toast.makeText(getApplicationContext(), "서버 오류가 발생했습니다.", Toast.LENGTH_LONG).show();
+                                    }
                                 }
 
                                 @Override

@@ -13,8 +13,10 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonArray;
@@ -38,6 +40,8 @@ public class RecordActivity extends AppCompatActivity {
     private TextView spotStr;
     private TextView timeStr;
     private TextView codeStr;
+    private ImageView research;
+    public EditText editTextFilter;
     ListViewAdapter adapter;
 
 
@@ -46,14 +50,14 @@ public class RecordActivity extends AppCompatActivity {
 
     private class ListViewAdapter extends BaseAdapter implements Filterable {
         // 필터링된 결과 데이터를 저장하기 위한 ArrayList. 최초에는 전체 리스트 보유.
+        private ArrayList<ListViewItem> filteredItemList = listViewItemList;
+
         Context context;
 
         public ListViewAdapter(Context context, ArrayList<ListViewItem> filteredItemList) {
             this.context = context;
             this.filteredItemList = filteredItemList;
         }
-
-        private ArrayList<ListViewItem> filteredItemList = listViewItemList;
 
 
         Filter listFilter;
@@ -184,7 +188,12 @@ public class RecordActivity extends AppCompatActivity {
         String token = FirebaseInstanceId.getInstance().getToken();
         Log.i("token-----", token);
 
-        Call<JsonObject> call = mApiService.search(token);
+        String category = null;
+        editTextFilter = (EditText) findViewById(R.id.editTextFilter);
+        String place = null;
+
+        // Call<JsonObject> call = mApiService.search(token);
+        Call<JsonObject> call = mApiService.search(token, category, place);
         Log.d(this.getClass().getName(), "call 실행 전");
         call.enqueue(new Callback<JsonObject>() {
             @Override
@@ -199,12 +208,16 @@ public class RecordActivity extends AppCompatActivity {
                     listViewItemList = getArrayList(jsonElement);
                     adapter = new ListViewAdapter(getApplicationContext(), listViewItemList);
                     listview.setAdapter(adapter);
+                } else if (response.code() == 400) {
+                    Toast.makeText(getApplicationContext(), "검색 정보가 없습니다", Toast.LENGTH_LONG).show();
+                } else if(response.code()==500) {
+                    Toast.makeText(getApplicationContext(),"서버 오류가 발생했습니다",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                Log.d(this.getClass().toString(), "retrofit Failure");
             }
         });
 
@@ -220,7 +233,7 @@ public class RecordActivity extends AppCompatActivity {
         // 리스트뷰 참조 및 Adapter달기
         listview.setAdapter(adapter);
 
-        EditText editTextFilter = (EditText) findViewById(R.id.editTextFilter);
+        final EditText editTextFilter = (EditText) findViewById(R.id.editTextFilter);
         editTextFilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable edit) {
@@ -234,6 +247,44 @@ public class RecordActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        research = (ImageView) findViewById(R.id.research);
+        research.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String token = FirebaseInstanceId.getInstance().getToken();
+                String category = "place";
+                String place = editTextFilter.getText().toString();
+                Call<JsonObject> call = mApiService.search(token, category, place);
+                call.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        Log.d(this.getClass().getName(), "응답 실행");
+                        Log.e("data : ", "onResponse: " + response.body().toString());
+                        int code = response.code();
+                        Log.d("상태코드", Integer.toString(code));
+                        if (response.code() == 200) {
+                            JsonArray jsonArray = response.body().getAsJsonArray("key");
+                            JsonArray jsonElement = jsonArray.getAsJsonArray();
+                            listViewItemList = getArrayList(jsonElement);
+                            adapter = new ListViewAdapter(getApplicationContext(), listViewItemList);
+                            // listview.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                            listview.setAdapter(adapter);
+                        } else if (response.code() == 400) {
+                            Toast.makeText(getApplicationContext(), "검색 정보가 없습니다", Toast.LENGTH_LONG).show();
+                        } else if(response.code()==500) {
+                            Toast.makeText(getApplicationContext(),"서버 오류가 발생했습니다",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        Log.d(this.getClass().toString(), "retrofit Failure");
+                    }
+                });
             }
         });
     }

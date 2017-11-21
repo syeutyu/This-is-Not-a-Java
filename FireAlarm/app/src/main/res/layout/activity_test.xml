@@ -11,47 +11,49 @@
         android:id="@+id/re"
         android:layout_width="match_parent"
         android:layout_height="430dp"
-        android:background="#a00000"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:background="#a00000">
+
         <TextView
-            android:layout_margin="15dp"
             android:id="@+id/module"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
 
             />
+
         <TextView
-            android:textSize="50dp"
-            android:gravity="center"
-            android:text="Time Stamp"
             android:id="@+id/time"
-            android:textColor="#FFFFFF"
             android:layout_width="300dp"
             android:layout_height="200dp"
-            android:background="#a00000"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="#a00000"
+            android:gravity="center"
+            android:text="Time Stamp"
+            android:textColor="#FFFFFF"
+            android:textSize="50dp" />
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_above="@id/time"
             android:layout_centerInParent="true"
             android:layout_marginBottom="20dp"
             android:src="@drawable/writer" />
+
         <TextView
-            android:layout_marginBottom="20dp"
-            android:layout_above="@id/img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="TEST"
-            android:textColor="#FFFFFF"
-            android:gravity="center"
+            android:layout_above="@id/img"
+            android:layout_marginBottom="20dp"
             android:background="#a00000"
-            />
+            android:gravity="center"
+            android:text="Device Test"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -59,25 +61,26 @@
         android:layout_height="match_parent"
         android:layout_below="@id/re"
         android:background="#a00000">
-    <TextView
-        android:id="@+id/intro"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="25dp"
-        android:text="버튼을 눌러 활성화 해주세요"
-        android:textColor="#FFFFFF"
-        />
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="버튼을 눌러 활성화 해주세요"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp" />
+
         <Button
             android:id="@+id/btn"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/intro"
-            android:background="@drawable/button"
-            />
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded"
+            android:text="Test" />
     </RelativeLayout>
 </RelativeLayout>

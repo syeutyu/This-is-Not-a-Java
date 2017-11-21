@@ -1,6 +1,8 @@
 package dsm.firealarm;
 
 import android.graphics.drawable.Drawable;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.Collator;
 import java.util.Comparator;
@@ -23,6 +25,30 @@ public class ListViewItem {
         this.spotStr = spotStr;
         this.timeStr = timeStr;
         this.codeStr = codeStr;
+    }
+
+    public String code;
+    public String place;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public ListViewItem(String code, String place) {
+        this.code = code;
+        this.place = place;
     }
 
     public String getNameStr() {
@@ -49,7 +75,11 @@ public class ListViewItem {
         this.timeStr = timeStr;
     }
 
-    public String getCodeStr() {return codeStr;}
+    public String getCodeStr() {
+        return codeStr;
+    }
 
-    public void setCodeStr(String codeStr) {this.codeStr = codeStr;}
+    public void setCodeStr(String codeStr) {
+        this.codeStr = codeStr;
+    }
 }

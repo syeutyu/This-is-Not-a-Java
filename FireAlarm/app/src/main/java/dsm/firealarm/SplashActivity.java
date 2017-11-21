@@ -23,7 +23,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
+        if(FirebaseInstanceId.getInstance().getToken() != null) {
+            Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
+        } else
+            Log.i("SplashActivity", "null값, 재실행하세요");
 
         Handler handler = new Handler();
         Log.d(this.getClass().getName(), "핸들러 실행 전");
@@ -33,7 +36,10 @@ public class SplashActivity extends AppCompatActivity {
                 mretrofit = new Retrofit.Builder().baseUrl(ApiService.API_URL).build();
                 mApiService = mretrofit.create(ApiService.class);
 
-                Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
+                if(FirebaseInstanceId.getInstance().getToken() != null) {
+                    Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
+                } else
+                    Log.i("SplashActivity", "null값, 재실행하세요");
 
                 Log.d(this.getClass().getName(), "토큰 보내기 전");
                 Call<Void> call = mApiService.signin(FirebaseInstanceId.getInstance().getToken());
@@ -63,6 +69,6 @@ public class SplashActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 2000);
+        }, 1000);
     }
 }

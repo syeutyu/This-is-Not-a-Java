@@ -5,43 +5,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/login"
     android:orientation="vertical"
-    tools:context="dsm.firealarm.SignUpActivity">
+    tools:context="dsm.firealarm.AddModuleActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5">
+        android:layout_weight="0.3">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
-        android:paddingTop="20dp">
-
-        <EditText
-            android:id="@+id/inputName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/image"
-            android:background="@drawable/rounded"
-            android:gravity="center"
-            android:hint="  이름을 입력하세요"
-            android:inputType="textPersonName"
-            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2"
+        android:layout_weight="0.15"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="80dp"
@@ -65,7 +42,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2"
+        android:layout_weight="0.15"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="80dp"
@@ -91,8 +68,8 @@
         android:layout_weight="0.1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingLeft="120dp"
-        android:paddingRight="120dp">
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp">
 
         <Button
             android:id="@+id/btnOk"

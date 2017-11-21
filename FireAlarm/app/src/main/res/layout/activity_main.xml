@@ -37,7 +37,7 @@
             android:textSize="20sp"
             android:drawableStart="@drawable/test"/>
 
-<!--    <TextView
+    <TextView
             android:id="@+id/settings"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -50,7 +50,7 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:drawableStart="@drawable/settings"/>-->
+            android:drawableStart="@drawable/settings"/>
 
 
 </LinearLayout>
