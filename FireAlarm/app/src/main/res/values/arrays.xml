@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cate_1">
+        <item>시간</item>
+        <item>장소</item>
+        <item>없음</item>
+    </string-array>
+
+    <string-array name="cate_2">
+        <item>시간</item>
+        <item>장소</item>
+        <item>없음음</item>
+        </string-array>>
+</resources>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FireAlarm</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_find_pw">FindPwActivity</string>
+    <string name="title_activity_show_all">ShowAllActivity</string>
+
+    <!-- TODO: TedPermission -->
+    <string name="rationale_title">권한 요청</string>
+    <string name="rationale_message">we need permission for read <b>contact</b> and find your <b>location</b></string>
+</resources>

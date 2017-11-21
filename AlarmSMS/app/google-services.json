@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "306850044248",
+    "firebase_url": "https://firedefender-ede0c.firebaseio.com",
+    "project_id": "firedefender-ede0c",
+    "storage_bucket": "firedefender-ede0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306850044248:android:0777117ce512bbb9",
+        "android_client_info": {
+          "package_name": "dsm.alarmsms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306850044248-flvqoga3l37ad2pt18qen85p4vqntaap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPUJQnPIKwY-GsB2j_Rd_mJ2hvM56IFvU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306850044248:android:489ad4348bd9ea3e",
+        "android_client_info": {
+          "package_name": "firedefender.dsm.sms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306850044248-03qeelufeggtp5u103ndttsv2ssi31cd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "firedefender.dsm.sms",
+            "certificate_hash": "46306c0edc38a63b46c16679be0a3af50f0bd2fc"
+          }
+        },
+        {
+          "client_id": "306850044248-flvqoga3l37ad2pt18qen85p4vqntaap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPUJQnPIKwY-GsB2j_Rd_mJ2hvM56IFvU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306850044248-flvqoga3l37ad2pt18qen85p4vqntaap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
