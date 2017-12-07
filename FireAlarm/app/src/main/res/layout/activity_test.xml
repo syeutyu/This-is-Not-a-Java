@@ -19,9 +19,7 @@
             android:id="@+id/module"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-
-            />
+            android:layout_margin="15dp" />
 
         <TextView
             android:id="@+id/time"
@@ -54,6 +52,7 @@
             android:text="Device Test"
             android:textColor="#FFFFFF"
             android:textSize="30dp" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -82,5 +81,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded"
             android:text="Test" />
+
     </RelativeLayout>
+
 </RelativeLayout>

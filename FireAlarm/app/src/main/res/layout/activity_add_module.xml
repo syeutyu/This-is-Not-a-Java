@@ -21,8 +21,8 @@
         android:layout_weight="0.15"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:paddingTop="20dp">
 
         <EditText
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/inputName"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/rounded"
+            android:background="@drawable/rectangle"
             android:gravity="center"
             android:hint="  기기 번호를 입력하세요"
             android:inputType="text"
@@ -45,8 +45,8 @@
         android:layout_weight="0.15"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:paddingTop="20dp">
 
         <EditText
@@ -55,7 +55,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/inputCode"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/rounded"
+            android:background="@drawable/rectangle"
             android:gravity="center"
             android:hint="  설치 위치를 입력하세요"
             android:textSize="15sp"
@@ -77,9 +77,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout"
             android:layout_marginLeft="7dp"
-            android:background="@drawable/rounded"
+            android:background="@drawable/sign_up_ok_btn"
             android:text="확인"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 </LinearLayout>

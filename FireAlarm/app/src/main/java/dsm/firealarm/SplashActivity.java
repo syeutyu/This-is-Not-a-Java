@@ -55,11 +55,13 @@ public class SplashActivity extends AppCompatActivity {
                             Log.i(this.getClass().getName(), "비회원");
                             Intent intent = new Intent(getApplication(), SignUpActivity.class);
                             startActivity(intent);
+                            finish();
                         } else if (response.code() == 200) {
                             /** 회원 */
                             Log.i(this.getClass().getName(), "회원");
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     }
 

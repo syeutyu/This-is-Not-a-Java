@@ -63,6 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공", 3000).show();
                             startActivityForResult(intent, 1000);
+                            finish();
                         } else if (response.code() == 403) {
                             SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "잘못된 정보입니다.", 3000).show();
                         }

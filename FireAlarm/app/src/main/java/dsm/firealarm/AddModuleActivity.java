@@ -19,6 +19,7 @@ import retrofit2.Retrofit;
 public class AddModuleActivity extends AppCompatActivity {
     Retrofit mretrofit;
     ApiService mApiService;
+    SettingActivity settingActivity;
 
     private EditText inputCode, inputPlace;
     private Button btnOk;
@@ -51,10 +52,10 @@ public class AddModuleActivity extends AppCompatActivity {
                         int statusCode = response.code();
                         Log.i("statusCode-----", Integer.toString(statusCode));
                         if (response.code() == 200) {
-                            finish();
                             Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                             SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "모듈추가 성공", 3000).show();
                             startActivityForResult(intent, 1000);
+                            finish();
                         } else if(response.code()==400){
                             SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "정확하게 입력해주세요.", 3000).show();
                         } else if(response.code()==403) {

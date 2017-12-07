@@ -90,7 +90,7 @@ public class CustomDialog extends Dialog {
 
         Log.d("code value", token);
         Log.d("code value", place);
-        Log.d("code value", tmpCode);
+//        Log.d("code value", tmpCode);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.API_URL)

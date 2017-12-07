@@ -222,10 +222,8 @@ public class SettingActivity extends AppCompatActivity {
         modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
-
         delete = (TextView) findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,7 +237,6 @@ public class SettingActivity extends AppCompatActivity {
                 Log.d("onClick: ","삭제 실행");
                 int count, checked;
                 count = adapter.getCount();
-
                 if(count > 0) {
                     checked = lastCheckPosition;
                     if(checked>-1 && checked<count) {
@@ -249,7 +246,7 @@ public class SettingActivity extends AppCompatActivity {
                 }
             }
         });*/
-      //finish();
+        //finish();
     }
 
     public int getSelectedPos() {

@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.os.Vibrator;
@@ -52,18 +53,22 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0 /*Request Code */, new Intent(this, MainActivity.class), 0);
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.splash)
-                .setContentTitle(msg)
-                .setAutoCancel(true)
-                .setSound(Uri.parse("android.resource://"
-                        + this.getPackageName() + "/" + R.raw.siren));
-        // .setVibrate(new long[]{1000, 1000})
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0 /* ID of notification */, mBuilder.build());
-
-        mBuilder.setContentIntent(contentIntent);
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        NotificationCompat.Builder mBuilder;
+        switch (audioManager.getRingerMode()) {
+            case AudioManager.RINGER_MODE_NORMAL:
+            case AudioManager.RINGER_MODE_VIBRATE:
+            case AudioManager.RINGER_MODE_SILENT:
+                mBuilder = new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.splash)
+                        .setContentTitle(msg)
+                        .setAutoCancel(true)
+                        .setSound(Uri.parse("android.resource://"
+                                + this.getPackageName() + "/" + R.raw.siren));
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(0 /* ID of notification */, mBuilder.build());
+                mBuilder.setContentIntent(contentIntent);
+        }
     }
 }

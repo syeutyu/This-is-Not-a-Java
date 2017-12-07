@@ -5,11 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- sh: 요거 두 개 퍼미션 안 받아도 돼? -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>
-    // 네트워크 사용을 위해
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -28,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity" />
+        <activity android:name=".TestActivity"></activity>
         <activity android:name=".SettingActivity"></activity>
 
         <service android:name=".FirebaseMessagingService">
@@ -36,14 +35,16 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <service android:name=".FirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name=".SpinnerActivity" />
+        <activity android:name=".SpinnerActivity"></activity>
         <activity android:name=".AddModuleActivity"></activity>
+
     </application>
 
 </manifest>

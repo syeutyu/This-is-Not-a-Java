@@ -199,7 +199,12 @@ public class RecordActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 Log.d(this.getClass().getName(), "응답 실행");
-                Log.e("data : ", "onResponse: " + response.body().toString());
+                try {
+                    Log.e("data : ", "onResponse: " + response.body().toString());
+                } catch (NullPointerException e) {
+                    Log.d(getClass().getName(), "response null");
+                    Toast.makeText(getApplicationContext(), "화재 발생 전적이 없습니다.", Toast.LENGTH_LONG).show();
+                }
                 int code = response.code();
                 Log.d("상태코드", Integer.toString(code));
                 if (response.code() == 200) {
