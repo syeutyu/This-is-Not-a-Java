@@ -2,7 +2,10 @@ package dsm.firealarm;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -15,50 +18,55 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class SplashActivity extends AppCompatActivity {
-    Retrofit mretrofit;
-    ApiService mApiService;
+    private Retrofit mretrofit;
+    private ApiService mApiService;
+
+    public static boolean DEBUG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if(FirebaseInstanceId.getInstance().getToken() != null) {
-            Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
+        this.DEBUG = isDebuggable(this);
+
+        if (FirebaseInstanceId.getInstance().getToken() != null) {
+            Dlog.d("token-----" + FirebaseInstanceId.getInstance().getToken());
         } else
-            Log.i("SplashActivity", "null값, 재실행하세요");
+            Dlog.d("token data is null. try again.");
 
         Handler handler = new Handler();
-        Log.d(this.getClass().getName(), "핸들러 실행 전");
+        Dlog.d("before handler");
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mretrofit = new Retrofit.Builder().baseUrl(ApiService.API_URL).build();
                 mApiService = mretrofit.create(ApiService.class);
 
-                if(FirebaseInstanceId.getInstance().getToken() != null) {
-                    Log.i("token-----", FirebaseInstanceId.getInstance().getToken());
+                if (FirebaseInstanceId.getInstance().getToken() != null) {
+                    Dlog.d("token-----" + FirebaseInstanceId.getInstance().getToken());
                 } else
-                    Log.i("SplashActivity", "null값, 재실행하세요");
+                    Dlog.d("token data is null. try again.");
 
-                Log.d(this.getClass().getName(), "토큰 보내기 전");
+                Dlog.d("before send token data");
                 Call<Void> call = mApiService.signin(FirebaseInstanceId.getInstance().getToken());
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Log.d(this.getClass().getName(), "응답 실행");
+                        Dlog.d("");
+
                         int statusCode = response.code();
-                        Log.i("statusCode-----", String.valueOf(statusCode));
+                        Dlog.d("statusCode-----" + String.valueOf(statusCode));
 
                         if (response.code() == 400) {
                             /** 비회원 */
-                            Log.i(this.getClass().getName(), "비회원");
+                            Dlog.d("not member");
                             Intent intent = new Intent(getApplication(), SignUpActivity.class);
                             startActivity(intent);
                             finish();
                         } else if (response.code() == 200) {
                             /** 회원 */
-                            Log.i(this.getClass().getName(), "회원");
+                            Dlog.d("member");
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -73,4 +81,25 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 1000);
     }
+
+    /**
+     * 현재 디버그모드여부를 리턴
+     *
+     * @param context
+     * @return
+     */
+    private boolean isDebuggable(Context context) {
+        boolean debuggable = false;
+
+        PackageManager pm = context.getPackageManager();
+        try {
+            ApplicationInfo appinfo = pm.getApplicationInfo(context.getPackageName(), 0);
+            debuggable = (0 != (appinfo.flags & ApplicationInfo.FLAG_DEBUGGABLE));
+        } catch (PackageManager.NameNotFoundException e) {
+        /* debuggable variable will remain false */
+        }
+
+        return debuggable;
+    }
+
 }
